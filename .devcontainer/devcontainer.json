@@ -1,0 +1,9 @@
+{
+  "name": "FairAccess",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "features": {
+    "ghcr.io/devcontainers-extra/features/bun:1": {}
+  }
+}
