@@ -6,4 +6,3 @@ Your device. Your choice. Your terms.
 
 To get started with FairAccess, follow these steps:
 
-

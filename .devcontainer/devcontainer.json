@@ -3,6 +3,14 @@
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "svelte.svelte-vscode",
+        "biomejs.biome"
+      ]
+    }
+  },
   "features": {
     "ghcr.io/devcontainers-extra/features/bun:1": {}
   }
