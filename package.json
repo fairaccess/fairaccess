@@ -9,7 +9,8 @@
     "libs/**/*"
   ],
   "scripts": {
-    "dev": "bun --workspaces dev"
+    "dev": "bun --workspaces dev",
+    "check:lint": "biome lint"
   },
   "author": "Robin Bühler",
   "license": "AGPL-3.0-only",

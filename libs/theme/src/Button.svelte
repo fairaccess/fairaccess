@@ -1,6 +1,6 @@
 <script>
-  export let label = "Cliasdasck me";
-  export let onClick = () => {};
+  export const label = "Cliasdasck me";
+  export const onClick = () => {};
 </script>
 
 <button on:click={onClick} class="button">
