@@ -6,6 +6,9 @@
   "[json]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
+  "[jsonc]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
   "[svelte]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
