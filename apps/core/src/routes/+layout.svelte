@@ -1,11 +1,12 @@
 <script lang="ts">
-	import favicon from '$lib/assets/favicon.svg';
+  import "@fairaccess/theme/index.css";
+  import favicon from "$lib/assets/favicon.svg";
 
-	const { children } = $props();
+  const { children } = $props();
 </script>
 
 <svelte:head>
-	<link rel="icon" href={favicon} />
+  <link rel="icon" href={favicon} />
 </svelte:head>
 
 {@render children()}

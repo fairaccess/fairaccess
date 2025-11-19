@@ -1,1 +1,1 @@
-export {default as Button} from './Button.svelte';
+export { Accordion } from "bits-ui";
