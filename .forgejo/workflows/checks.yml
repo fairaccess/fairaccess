@@ -10,6 +10,7 @@ on:
 
 jobs:
   build:
+    name: Checks
     runs-on: codeberg-tiny
 
     steps:
