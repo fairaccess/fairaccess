@@ -11,7 +11,7 @@ on:
 jobs:
   build:
     name: Checks
-    runs-on: codeberg-tiny
+    runs-on: srv-obin-ch_ubuntu-latest
 
     steps:
       - name: Checkout repository
@@ -20,7 +20,7 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version: 1.3.2
+          bun-version: 1.3.3
 
       - name: Install dependencies
         run: bun install

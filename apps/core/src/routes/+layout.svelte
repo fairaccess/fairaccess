@@ -1,5 +1,5 @@
 <script lang="ts">
-  import "@fairaccess/theme/index.css";
+  import "@fairaccess/theme";
   import favicon from "$lib/assets/favicon.svg";
 
   const { children } = $props();

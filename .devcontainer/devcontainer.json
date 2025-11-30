@@ -14,5 +14,6 @@
   },
   "features": {
     "ghcr.io/devcontainers-extra/features/bun:1": {}
-  }
+  },
+  "forwardPorts": [5001]
 }

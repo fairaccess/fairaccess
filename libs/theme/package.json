@@ -1,6 +1,6 @@
 {
   "name": "@fairaccess/theme",
-  "version": "0.0.1",
+  "version": "0.0.31",
   "type": "module",
   "scripts": {
     "dev": "svelte-kit sync && svelte-package --watch --input=src",
