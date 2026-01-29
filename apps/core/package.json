@@ -11,7 +11,11 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
   },
+  "dependencies": {
+    "drizzle-orm": "^0.45.1"
+  },
   "devDependencies": {
+    "@fairaccess/db": "workspace:*",
     "@fairaccess/theme": "workspace:*",
     "@sveltejs/adapter-node": "^5.4.0",
     "@sveltejs/kit": "^2.48.5",
