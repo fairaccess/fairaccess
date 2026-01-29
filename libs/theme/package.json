@@ -32,16 +32,16 @@
     "svelte": "^5.0.0"
   },
   "devDependencies": {
-    "@sveltejs/kit": "^2.48.5",
-    "@sveltejs/package": "^2.5.4",
-    "@sveltejs/vite-plugin-svelte": "^6.2.1",
-    "eslint": "^9.39.1",
-    "svelte": "^5.43.12",
-    "svelte-check": "^4.3.4",
+    "@sveltejs/kit": "^2.50.1",
+    "@sveltejs/package": "^2.5.7",
+    "@sveltejs/vite-plugin-svelte": "^6.2.4",
+    "eslint": "^9.39.2",
+    "svelte": "^5.49.0",
+    "svelte-check": "^4.3.5",
     "typescript": "5.9.3",
-    "vite": "^7.2.2"
+    "vite": "^7.3.1"
   },
   "dependencies": {
-    "bits-ui": "^2.14.4"
+    "bits-ui": "^2.15.4"
   }
 }
