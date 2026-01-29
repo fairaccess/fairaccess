@@ -5,7 +5,6 @@
   "scripts": {
     "dev": "svelte-kit sync && svelte-package --watch --input=src",
     "build": "svelte-kit sync && svelte-package --input=src",
-    "lint": "eslint .",
     "check-types": "svelte-check --tsconfig ./tsconfig.json"
   },
   "files": [
@@ -35,7 +34,6 @@
     "@sveltejs/kit": "^2.50.1",
     "@sveltejs/package": "^2.5.7",
     "@sveltejs/vite-plugin-svelte": "^6.2.4",
-    "eslint": "^9.39.2",
     "svelte": "^5.49.0",
     "svelte-check": "^4.3.5",
     "typescript": "5.9.3",
