@@ -1,3 +1,3 @@
-export { createDb, getDefaultDbPath, type DB } from "./db/client";
-export { runMigrations } from "./migrate";
+export { createDb, type DB, getDefaultDbPath } from "./db/client";
 export * from "./db/schema";
+export { runMigrations } from "./migrate";

@@ -1,9 +1,9 @@
+import { resolve } from "node:path";
 import Database from "better-sqlite3";
 import {
-  drizzle,
   type BetterSQLite3Database,
+  drizzle,
 } from "drizzle-orm/better-sqlite3";
-import { resolve } from "path";
 import * as schema from "./schema.ts";
 
 /**

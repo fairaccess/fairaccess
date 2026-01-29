@@ -1,6 +1,6 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
-  import type { PageData } from "./$types";
+  import type { PageData } from "../crud/$types";
 
   interface User {
     id: number;

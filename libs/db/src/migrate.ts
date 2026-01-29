@@ -1,6 +1,6 @@
-import { migrate } from "drizzle-orm/better-sqlite3/migrator";
-import { type DB, createDb } from "./db/client";
 import { resolve } from "node:path";
+import { migrate } from "drizzle-orm/better-sqlite3/migrator";
+import { createDb, type DB } from "./db/client";
 
 /**
  * Run database migrations.

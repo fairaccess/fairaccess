@@ -1,6 +1,6 @@
-import { db } from "$lib/server/db";
 import { users } from "@fairaccess/db/schema";
 import { eq } from "drizzle-orm";
+import { db } from "$lib/server/db";
 
 export async function createUser(name: string, email: string) {
   const result = await db.insert(users).values({ name, email }).returning();

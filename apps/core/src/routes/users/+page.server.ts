@@ -1,9 +1,9 @@
-import { fail, type Actions } from "@sveltejs/kit";
+import { type Actions, fail } from "@sveltejs/kit";
 import {
   createUser,
+  deleteUser,
   getUsers,
   updateUser,
-  deleteUser,
 } from "$lib/server/users";
 
 export async function load() {
@@ -34,7 +34,7 @@ export const actions: Actions = {
 
   update: async ({ request }) => {
     const data = await request.formData();
-    const id = parseInt(data.get("id")?.toString() || "0");
+    const id = parseInt(data.get("id")?.toString() || "0", 10);
     const name = data.get("name")?.toString();
     const email = data.get("email")?.toString();
 
@@ -54,7 +54,7 @@ export const actions: Actions = {
 
   delete: async ({ request }) => {
     const data = await request.formData();
-    const id = parseInt(data.get("id")?.toString() || "0");
+    const id = parseInt(data.get("id")?.toString() || "0", 10);
 
     if (!id) {
       return fail(400, { error: "ID is required" });
