@@ -7,19 +7,19 @@ networks:
     external: true
 
 services:
-  frontend:
+  core:
     image: codeberg.org/fairaccess/fairaccess-core:0.0.32
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.frontend.rule=Host(`fairaccess.ch`)"
-      - "traefik.http.routers.frontend.entrypoints=http,https"
+      - "traefik.http.routers.core.rule=Host(`fairaccess.ch`)"
+      - "traefik.http.routers.core.entrypoints=http,https"
       - "traefik.http.middlewares.redirect-https.redirectscheme.scheme=https"
       - "traefik.http.middlewares.redirect-https.redirectscheme.permanent=true"
-      - "traefik.http.routers.frontend.middlewares=redirect-https"
-      - "traefik.http.routers.frontend.tls=true"
-      - "traefik.http.routers.frontend.tls.certresolver=letsencrypt"
-      - "traefik.http.services.frontend.loadbalancer.server.port=3000"
+      - "traefik.http.routers.core.middlewares=redirect-https"
+      - "traefik.http.routers.core.tls=true"
+      - "traefik.http.routers.core.tls.certresolver=letsencrypt"
+      - "traefik.http.services.core.loadbalancer.server.port=3000"
     networks:
       - proxy
       - fairaccess

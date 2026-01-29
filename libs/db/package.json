@@ -10,9 +10,14 @@
     "./schema": {
       "types": "./src/db/schema.ts",
       "default": "./src/db/schema.ts"
+    },
+    "./migrate": {
+      "types": "./src/migrate.ts",
+      "default": "./src/migrate.ts"
     }
   },
   "scripts": {
+    "migrate": "bun run src/migrate.ts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
@@ -20,11 +25,9 @@
   },
   "peerDependencies": {},
   "dependencies": {
-    "better-sqlite3": "^12.6.2",
     "drizzle-orm": "^0.45.1"
   },
   "devDependencies": {
-    "@types/better-sqlite3": "^7.6.13",
     "drizzle-kit": "^0.31.8",
     "eslint": "^9.39.2"
   }
