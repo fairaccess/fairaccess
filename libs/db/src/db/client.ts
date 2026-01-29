@@ -1,5 +1,8 @@
-import { Database } from "bun:sqlite";
-import { drizzle, type BunSQLiteDatabase } from "drizzle-orm/bun-sqlite";
+import Database from "better-sqlite3";
+import {
+  drizzle,
+  type BetterSQLite3Database,
+} from "drizzle-orm/better-sqlite3";
 import { resolve } from "path";
 import * as schema from "./schema.ts";
 
@@ -17,7 +20,7 @@ export function getDefaultDbPath(): string {
  */
 export function createDb(
   databaseUrl?: string,
-): BunSQLiteDatabase<typeof schema> {
+): BetterSQLite3Database<typeof schema> {
   const dbPath = databaseUrl || getDefaultDbPath();
   const sqlite = new Database(dbPath);
   return drizzle(sqlite, { schema });
