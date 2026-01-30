@@ -1,14 +1,8 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
   import { invalidateAll } from "$app/navigation";
+  import type { User } from "$lib/server/types";
   import type { PageData } from "../users/$types";
-
-  interface User {
-    id: number;
-    name: string;
-    email: string;
-    createdAt: Date | null;
-  }
 
   let { data }: { data: PageData } = $props();
 
