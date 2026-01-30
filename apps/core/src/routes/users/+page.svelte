@@ -1,12 +1,13 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
-  import type { PageData } from "../crud/$types";
+  import { invalidateAll } from "$app/navigation";
+  import type { PageData } from "../users/$types";
 
   interface User {
     id: number;
     name: string;
     email: string;
-    createdAt: Date;
+    createdAt: Date | null;
   }
 
   let { data }: { data: PageData } = $props();
@@ -42,6 +43,7 @@
             name = "";
             email = "";
             editingId = null;
+            await invalidateAll();
           }
         };
       }}
@@ -98,13 +100,19 @@
             <div class="user-info">
               <h3>{user.name}</h3>
               <p>{user.email}</p>
-              <small>{new Date(user.createdAt).toLocaleDateString()}</small>
+              <small>{user.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'N/A'}</small>
             </div>
             <div class="user-actions">
               <button onclick={() => startEdit(user)}>
                 Edit
               </button>
-              <form method="POST" action="?/delete" use:enhance style="display: inline;">
+              <form method="POST" action="?/delete" use:enhance={() => {
+                return async ({ result }) => {
+                  if (result.type === "success") {
+                    await invalidateAll();
+                  }
+                };
+              }} style="display: inline;">
                 <input type="hidden" name="id" value={user.id} />
                 <button type="submit" class="delete-btn">
                   Delete
