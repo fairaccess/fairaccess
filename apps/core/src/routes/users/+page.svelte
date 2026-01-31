@@ -1,6 +1,7 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
-  import { invalidateAll } from "$app/navigation";
+  import { invalidateAll, goto } from "$app/navigation";
+  import { page } from "$app/state";
   import type { User } from "$lib/server/types";
   import type { PageData } from "../users/$types";
 
@@ -8,18 +9,32 @@
 
   let name = $state("");
   let email = $state("");
-  let editingId: number | null = $state(null);
+
+  $effect(() => {
+    const editId = page.url.searchParams.get("edit");
+    if (editId) {
+      const user = data.users.find((u) => u.id === parseInt(editId, 10));
+      if (user) {
+        name = user.name;
+        email = user.email;
+      }
+    } else {
+      name = "";
+      email = "";
+    }
+  });
+
+  const editingId = $derived.by(() => {
+    const id = page.url.searchParams.get("edit");
+    return id ? parseInt(id, 10) : null;
+  });
 
   function startEdit(user: User) {
-    name = user.name;
-    email = user.email;
-    editingId = user.id;
+    goto(`?edit=${user.id}`);
   }
 
   function cancelEdit() {
-    name = "";
-    email = "";
-    editingId = null;
+    goto("?");
   }
 </script>
 
@@ -34,10 +49,8 @@
       use:enhance={() => {
         return async ({ result }) => {
           if (result.type === "success") {
-            name = "";
-            email = "";
-            editingId = null;
             await invalidateAll();
+            await goto("?");
           }
         };
       }}
