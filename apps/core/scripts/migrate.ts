@@ -9,11 +9,9 @@ const migrationsPath =
     ? resolve(process.cwd(), "./migrations")
     : undefined;
 
-(async () => {
-  runMigrations(process.env.DATABASE_URL || undefined, migrationsPath);
-  await runAuthMigrations({
-    databaseUrl: process.env.DATABASE_URL || undefined,
-    baseURL: process.env.BETTER_AUTH_URL,
-    secret: process.env.BETTER_AUTH_SECRET,
-  });
-})();
+runMigrations(process.env.DATABASE_URL || undefined, migrationsPath);
+await runAuthMigrations({
+  databaseUrl: process.env.DATABASE_URL || undefined,
+  baseURL: process.env.BETTER_AUTH_URL,
+  secret: process.env.BETTER_AUTH_SECRET,
+});
