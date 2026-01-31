@@ -15,17 +15,28 @@ export function getDefaultDbPath(): string {
 }
 
 /**
+ * Creates a raw SQLite connection with standard pragmas.
+ * @param databaseUrl - Path to the SQLite database file. Defaults to the shared database location.
+ */
+export function createSqliteConnection(
+  databaseUrl?: string,
+): Database.Database {
+  const dbPath = databaseUrl || getDefaultDbPath();
+  const sqlite = new Database(dbPath);
+  sqlite.pragma("journal_mode = WAL");
+  sqlite.pragma("synchronous = NORMAL");
+  sqlite.pragma("busy_timeout = 5000");
+  return sqlite;
+}
+
+/**
  * Creates a database connection.
  * @param databaseUrl - Path to the SQLite database file. Defaults to the shared database location.
  */
 export function createDb(
   databaseUrl?: string,
 ): BetterSQLite3Database<typeof schema> {
-  const dbPath = databaseUrl || getDefaultDbPath();
-  const sqlite = new Database(dbPath);
-  sqlite.pragma("journal_mode = WAL");
-  sqlite.pragma("synchronous = NORMAL");
-  sqlite.pragma("busy_timeout = 5000");
+  const sqlite = createSqliteConnection(databaseUrl);
   return drizzle(sqlite, { schema });
 }
 

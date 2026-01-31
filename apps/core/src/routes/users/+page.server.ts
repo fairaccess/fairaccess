@@ -1,4 +1,5 @@
-import { type Actions, fail } from "@sveltejs/kit";
+import { type Actions, fail, redirect } from "@sveltejs/kit";
+import { auth } from "$lib/server/auth";
 import {
   createUser,
   deleteUser,
@@ -68,5 +69,10 @@ export const actions: Actions = {
         error: error instanceof Error ? error.message : "Failed to delete user",
       });
     }
+  },
+
+  logout: async ({ request }) => {
+    await auth.api.signOut({ headers: request.headers });
+    throw redirect(303, "/login");
   },
 };

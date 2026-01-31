@@ -1,6 +1,6 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
-  import { invalidateAll, goto } from "$app/navigation";
+  import { goto, invalidateAll } from "$app/navigation";
   import { page } from "$app/state";
   import type { User } from "$lib/server/types";
   import type { PageData } from "../users/$types";
@@ -40,6 +40,11 @@
 
 <div class="container">
   <h1>User Management CRUD Demo</h1>
+  <form method="POST" action="?/logout" class="logout-form">
+    <button type="submit" class="secondary">
+      Sign out
+    </button>
+  </form>
 
   <div class="form-section">
     <h2>{editingId ? "Edit User" : "Add New User"}</h2>
@@ -203,6 +208,14 @@
     transition: background-color 0.3s;
   }
 
+  button.secondary {
+    background-color: #6c757d;
+  }
+
+  button.secondary:hover {
+    background-color: #545b62;
+  }
+
   button:hover {
     background-color: #0056b3;
   }
@@ -220,6 +233,12 @@
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid #eee;
+  }
+
+  .logout-form {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1.5rem;
   }
 
   .user-list {

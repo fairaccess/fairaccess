@@ -25,5 +25,5 @@ jobs:
       - name: Install dependencies
         run: bun install
 
-      - name: Check code style
-        run: bun run lint
+      - name: Check code
+        run: bun run check

@@ -1,0 +1,17 @@
+{
+  "name": "@fairaccess/auth",
+  "version": "0.0.31",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "scripts": {},
+  "peerDependencies": {},
+  "dependencies": {
+    "@fairaccess/db": "workspace:*",
+    "better-auth": "^1.4.18"
+  }
+}
