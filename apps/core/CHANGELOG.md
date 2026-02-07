@@ -1,5 +1,11 @@
 # @fairaccess/core
 
+## 0.0.38
+
+### Patch Changes
+
+- e70c43e: Simplify dockerfile
+
 ## 0.0.37
 
 ### Patch Changes
