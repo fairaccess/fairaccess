@@ -1,5 +1,11 @@
 # @fairaccess/core
 
+## 0.0.44
+
+### Patch Changes
+
+- 352b9b6: Fix workflow
+
 ## 0.0.43
 
 ### Patch Changes
