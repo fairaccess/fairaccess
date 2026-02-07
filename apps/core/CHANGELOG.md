@@ -1,5 +1,11 @@
 # @fairaccess/core
 
+## 0.0.37
+
+### Patch Changes
+
+- 8df9746: Remove better-sqlite3
+
 ## 0.0.36
 
 ### Patch Changes
