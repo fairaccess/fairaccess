@@ -27,4 +27,7 @@ COPY --from=install /usr/src/app/node_modules ./node_modules
 COPY --from=install /usr/src/app/apps ./apps
 COPY --from=install /usr/src/app/libs ./libs
 COPY . .
+
+RUN cp apps/core/.env.example apps/core/.env
+RUN cd apps/core && bun run prepare
 RUN bun run build
