@@ -1,5 +1,5 @@
-import { resolve } from "node:path";
 import { Database } from "bun:sqlite";
+import { resolve } from "node:path";
 import { drizzle } from "drizzle-orm/bun-sqlite";
 import * as schema from "./schema.ts";
 
