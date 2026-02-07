@@ -1,9 +1,6 @@
 import { resolve } from "node:path";
-import Database from "better-sqlite3";
-import {
-  type BetterSQLite3Database,
-  drizzle,
-} from "drizzle-orm/better-sqlite3";
+import { Database } from "bun:sqlite";
+import { drizzle } from "drizzle-orm/bun-sqlite";
 import * as schema from "./schema.ts";
 
 /**
@@ -18,14 +15,12 @@ export function getDefaultDbPath(): string {
  * Creates a raw SQLite connection with standard pragmas.
  * @param databaseUrl - Path to the SQLite database file. Defaults to the shared database location.
  */
-export function createSqliteConnection(
-  databaseUrl?: string,
-): Database.Database {
+export function createSqliteConnection(databaseUrl?: string): Database {
   const dbPath = databaseUrl || getDefaultDbPath();
   const sqlite = new Database(dbPath);
-  sqlite.pragma("journal_mode = WAL");
-  sqlite.pragma("synchronous = NORMAL");
-  sqlite.pragma("busy_timeout = 5000");
+  sqlite.run("PRAGMA journal_mode = WAL");
+  sqlite.run("PRAGMA synchronous = NORMAL");
+  sqlite.run("PRAGMA busy_timeout = 5000");
   return sqlite;
 }
 
@@ -33,11 +28,9 @@ export function createSqliteConnection(
  * Creates a database connection.
  * @param databaseUrl - Path to the SQLite database file. Defaults to the shared database location.
  */
-export function createDb(
-  databaseUrl?: string,
-): BetterSQLite3Database<typeof schema> {
+export function createDb(databaseUrl?: string): DB {
   const sqlite = createSqliteConnection(databaseUrl);
   return drizzle(sqlite, { schema });
 }
 
-export type DB = ReturnType<typeof createDb>;
+export type DB = ReturnType<typeof drizzle>;
