@@ -1,5 +1,11 @@
 # @fairaccess/core
 
+## 0.0.36
+
+### Patch Changes
+
+- e25cb9d: Enable buildkit caching for base image
+
 ## 0.0.35
 
 ### Patch Changes
