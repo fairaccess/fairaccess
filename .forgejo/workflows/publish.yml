@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
@@ -65,7 +65,7 @@ jobs:
       base-tag: ${{ steps.set-base-tag.outputs.tag }}
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -104,9 +104,12 @@ jobs:
     runs-on: srv-obin-ch_ubuntu-latest
     needs: [publish, build-base-image]
     if: needs.publish.outputs.published == 'true'
+    strategy:
+      matrix:
+        package: ${{ fromJson(needs.publish.outputs.images) }}
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -126,74 +129,69 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.CONTAINER_REGISTRY_TOKEN }}
 
-      - name: Build and publish all images
+      - name: Generate tags
+        id: set-tags
+        run: |
+          VERSION=${{ matrix.package.version }}
+          NAME=${{ matrix.package.name }}
+          MAJOR=$(echo $VERSION | cut -d. -f1)
+          MINOR=$(echo $VERSION | cut -d. -f2)
+          SHORTNAME=$(echo $NAME | cut -d/ -f2)
+          echo "MAJOR=$MAJOR" >> $GITHUB_OUTPUT
+          echo "MINOR=$MINOR" >> $GITHUB_OUTPUT
+          echo "BASENAME=codeberg.org/fairaccess/fairaccess-$SHORTNAME" >> $GITHUB_OUTPUT
+
+      - name: Build and publish image
         env:
-          IMAGES_JSON: ${{ needs.publish.outputs.images }}
           BASE_IMAGE: ${{ needs.build-base-image.outputs.base-tag }}
-          GITHUB_SHA: ${{ github.sha }}
+          PACKAGE_NAME: ${{ matrix.package.name }}
+          PACKAGE_VERSION: ${{ matrix.package.version }}
+          BASENAME: ${{ steps.set-tags.outputs.BASENAME }}
+          MAJOR: ${{ steps.set-tags.outputs.MAJOR }}
+          MINOR: ${{ steps.set-tags.outputs.MINOR }}
         run: |
           set -euo pipefail
 
-          # Parse images JSON and iterate
-          echo "Images to build: $IMAGES_JSON"
+          echo "======================================================================"
+          echo "Building package: $PACKAGE_NAME version $PACKAGE_VERSION"
+          echo "======================================================================"
 
-          echo "$IMAGES_JSON" | jq -c '.[]' | while read -r package; do
-            PACKAGE_NAME=$(echo "$package" | jq -r '.name')
-            PACKAGE_VERSION=$(echo "$package" | jq -r '.version')
-
-            echo ""
-            echo "======================================================================"
-            echo "Processing package: $PACKAGE_NAME version $PACKAGE_VERSION"
-            echo "======================================================================"
-
-            # Find package directory
-            PACKAGE_DIR=$(git ls-files -- '**/package.json' | while read -r f; do
-              name=$(jq -r '.name' "$f")
-              if [ "$name" = "$PACKAGE_NAME" ]; then
-                dirname "$f"
-              fi
-            done | head -n1)
-
-            if [ -z "$PACKAGE_DIR" ]; then
-              echo "No directory found for $PACKAGE_NAME. Skipping."
-              continue
+          # Find package directory
+          PACKAGE_DIR=$(git ls-files -- '**/package.json' | while read -r f; do
+            name=$(jq -r '.name' "$f")
+            if [ "$name" = "$PACKAGE_NAME" ]; then
+              dirname "$f"
             fi
+          done | head -n1)
 
-            if [ ! -f "$PACKAGE_DIR/Dockerfile" ]; then
-              echo "No Dockerfile for $PACKAGE_NAME in $PACKAGE_DIR. Skipping."
-              continue
-            fi
+          if [ -z "$PACKAGE_DIR" ]; then
+            echo "::error::No directory found for $PACKAGE_NAME"
+            exit 1
+          fi
 
-            echo "Found Dockerfile: $PACKAGE_DIR/Dockerfile"
+          if [ ! -f "$PACKAGE_DIR/Dockerfile" ]; then
+            echo "::error::No Dockerfile for $PACKAGE_NAME in $PACKAGE_DIR"
+            exit 1
+          fi
 
-            # Generate tags
-            MAJOR=$(echo "$PACKAGE_VERSION" | cut -d. -f1)
-            MINOR=$(echo "$PACKAGE_VERSION" | cut -d. -f2)
-            SHORTNAME=$(echo "$PACKAGE_NAME" | cut -d/ -f2)
-            BASENAME="codeberg.org/fairaccess/fairaccess-$SHORTNAME"
+          echo "Found Dockerfile: $PACKAGE_DIR/Dockerfile"
+          echo "Building with tags:"
+          echo " - $BASENAME:latest"
+          echo " - $BASENAME:${{ github.sha }}"
+          echo " - $BASENAME:$PACKAGE_VERSION"
+          echo " - $BASENAME:$MAJOR"
+          echo " - $BASENAME:$MAJOR.$MINOR"
 
-            echo "Building with tags:"
-            echo " - $BASENAME:latest"
-            echo " - $BASENAME:$GITHUB_SHA"
-            echo " - $BASENAME:$PACKAGE_VERSION"
-            echo " - $BASENAME:$MAJOR"
-            echo " - $BASENAME:$MAJOR.$MINOR"
+          docker buildx build \
+            --platform linux/amd64,linux/arm64 \
+            --build-arg BASE_IMAGE="$BASE_IMAGE" \
+            -t "$BASENAME:latest" \
+            -t "$BASENAME:${{ github.sha }}" \
+            -t "$BASENAME:$PACKAGE_VERSION" \
+            -t "$BASENAME:$MAJOR" \
+            -t "$BASENAME:$MAJOR.$MINOR" \
+            -f "$PACKAGE_DIR/Dockerfile" \
+            "$PACKAGE_DIR" \
+            --push
 
-            # Build and push
-            docker buildx build \
-              --platform linux/amd64,linux/arm64 \
-              --build-arg BASE_IMAGE="$BASE_IMAGE" \
-              -t "$BASENAME:latest" \
-              -t "$BASENAME:$GITHUB_SHA" \
-              -t "$BASENAME:$PACKAGE_VERSION" \
-              -t "$BASENAME:$MAJOR" \
-              -t "$BASENAME:$MAJOR.$MINOR" \
-              -f "$PACKAGE_DIR/Dockerfile" \
-              "$PACKAGE_DIR" \
-              --push
-
-            echo "Image build & push complete for $PACKAGE_NAME:$PACKAGE_VERSION"
-          done
-
-          echo ""
-          echo "All images built and pushed successfully!"
+          echo "Image build & push complete for $PACKAGE_NAME:$PACKAGE_VERSION"
