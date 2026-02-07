@@ -7,6 +7,12 @@ COPY apps/core/package.json ./apps/core/package.json
 COPY libs/auth/package.json ./libs/auth/package.json
 COPY libs/db/package.json ./libs/db/package.json
 COPY libs/theme/package.json ./libs/theme/package.json
+
+RUN apt-get update && apt-get install -y \
+    python3 \
+    make \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
 RUN bun install --frozen-lockfile
 
 FROM base AS prerelease
