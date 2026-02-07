@@ -12,7 +12,6 @@ jobs:
     name: Publish
     runs-on: srv-obin-ch_ubuntu-latest
     if: github.event.pull_request.merged == true && github.head_ref == 'changeset-release/main'
-
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -71,8 +70,6 @@ jobs:
     runs-on: srv-obin-ch_ubuntu-latest
     needs: publish
     if: ${{ needs.publish.outputs.published == 'true' }}
-    outputs:
-      base-tag: ${{ steps.set-base-tag.outputs.tag }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v6
@@ -108,6 +105,8 @@ jobs:
             . \
             --push
           echo "Base image built and pushed: ${{ steps.set-base-tag.outputs.tag }}"
+    outputs:
+      baseTag: ${{ steps.set-base-tag.outputs.tag }}
 
   build-and-publish-images:
     name: Build and publish images
@@ -152,7 +151,7 @@ jobs:
 
       - name: Build and publish image
         env:
-          BASE_IMAGE: ${{ needs.build-base-image.outputs.base-tag }}
+          BASE_IMAGE: ${{ needs.build-base-image.outputs.baseTag }}
           PACKAGE_NAME: ${{ matrix.package.name }}
           PACKAGE_VERSION: ${{ matrix.package.version }}
           BASENAME: ${{ steps.set-tags.outputs.BASENAME }}
@@ -184,6 +183,7 @@ jobs:
           fi
 
           echo "Found Dockerfile: $PACKAGE_DIR/Dockerfile"
+          echo "Using base image: $BASE_IMAGE"
           echo "Building with tags:"
           echo " - $BASENAME:latest"
           echo " - $BASENAME:${{ github.sha }}"
