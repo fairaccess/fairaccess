@@ -1,5 +1,11 @@
 # @fairaccess/core
 
+## 0.0.40
+
+### Patch Changes
+
+- e7a3668: Set environment variables during build
+
 ## 0.0.39
 
 ### Patch Changes
