@@ -4,6 +4,8 @@ WORKDIR /usr/src/app
 FROM base AS install
 COPY package.json bun.lock ./
 COPY apps/core/package.json ./apps/core/package.json
+COPY libs/auth/package.json ./libs/auth/package.json
+COPY libs/db/package.json ./libs/db/package.json
 COPY libs/theme/package.json ./libs/theme/package.json
 RUN bun install --frozen-lockfile
 
