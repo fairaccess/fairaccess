@@ -151,7 +151,9 @@ jobs:
 
       - name: Build and publish image
         env:
-          BASE_IMAGE: ${{ needs.build-base-image.outputs.baseTag }}
+          # Revert to this when https://codeberg.org/forgejo/forgejo/issues/11163 is released
+          # BASE_IMAGE: ${{ needs.build-base-image.outputs.baseTag }}
+          BASE_IMAGE: codeberg.org/fairaccess/fairaccess-base:${{ github.sha }}
           PACKAGE_NAME: ${{ matrix.package.name }}
           PACKAGE_VERSION: ${{ matrix.package.version }}
           BASENAME: ${{ steps.set-tags.outputs.BASENAME }}
