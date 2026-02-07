@@ -17,7 +17,7 @@
     },
     "apps/core": {
       "name": "@fairaccess/core",
-      "version": "0.0.41",
+      "version": "0.0.42",
       "dependencies": {
         "@fairaccess/auth": "workspace:*",
         "drizzle-orm": "^0.45.1",
