@@ -1,18 +1,7 @@
 FROM oven/bun:1.3.8 AS base
 WORKDIR /usr/src/app
 
-FROM base AS install-deps
-RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
-    --mount=type=cache,target=/var/lib/apt/lists,sharing=locked \
-    apt-get update && apt-get install -y \
-    python3 \
-    make \
-    g++ \
-    node-gyp \
-    pkg-config \
-    libsqlite3-dev
-
-FROM install-deps AS install
+FROM base AS install
 COPY package.json bun.lock ./
 COPY apps/core/package.json ./apps/core/package.json
 COPY libs/auth/package.json ./libs/auth/package.json
@@ -20,7 +9,7 @@ COPY libs/db/package.json ./libs/db/package.json
 COPY libs/theme/package.json ./libs/theme/package.json
 
 RUN --mount=type=cache,target=/root/.bun/install/cache \
-    bun install --frozen-lockfile --no-optional
+    bun install --frozen-lockfile --ignore-scripts
 
 FROM base AS prerelease
 COPY --from=install /usr/src/app/node_modules ./node_modules
