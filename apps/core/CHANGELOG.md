@@ -1,5 +1,11 @@
 # @fairaccess/core
 
+## 0.0.39
+
+### Patch Changes
+
+- 52df0b1: Fix dockerfile
+
 ## 0.0.38
 
 ### Patch Changes
