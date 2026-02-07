@@ -17,7 +17,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
         with:
-          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
 
       - name: Setup Bun
@@ -57,9 +56,10 @@ jobs:
             | while read -r f; do dir=$(dirname "$f"); if [ -f "$dir/package.json" ]; then jq -r '.name' "$dir/package.json"; fi; done \
             | jq -R -s 'split("\n") | map(select(length>0))')
           published_packages='${{ steps.changesets.outputs.publishedPackages }}'
-          targets=$(echo $published_packages | jq -c --argjson possible_targets "$possible_targets" 'map(select(.name == $possible_targets[]))')
+          targets=$(echo "$published_packages" | jq -c --argjson possible_targets "$possible_targets" '[.[] | select(.name as $n | $possible_targets | index($n))]')
           echo "images=$targets" >> $GITHUB_OUTPUT
           echo "Published packages: $published_packages"
+          echo "Possible targets: $possible_targets"
           echo "Images to build: $targets"
     outputs:
       published: ${{ steps.changesets.outputs.published }}
@@ -70,7 +70,7 @@ jobs:
     name: Build base image
     runs-on: srv-obin-ch_ubuntu-latest
     needs: publish
-    if: needs.publish.outputs.published == 'true'
+    if: ${{ needs.publish.outputs.published == 'true' }}
     outputs:
       base-tag: ${{ steps.set-base-tag.outputs.tag }}
     steps:
@@ -113,7 +113,7 @@ jobs:
     name: Build and publish images
     runs-on: srv-obin-ch_ubuntu-latest
     needs: [publish, build-base-image]
-    if: needs.publish.outputs.published == 'true'
+    if: ${{ needs.publish.outputs.published == 'true' && needs.publish.outputs.images != '[]' }}
     strategy:
       matrix:
         package: ${{ fromJson(needs.publish.outputs.images) }}
