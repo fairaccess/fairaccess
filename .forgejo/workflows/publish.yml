@@ -113,7 +113,7 @@ jobs:
     name: Build and publish images
     runs-on: srv-obin-ch_ubuntu-latest
     needs: [publish, build-base-image]
-    if: ${{ needs.publish.outputs.published == 'true' && needs.publish.outputs.images != '[]' }}
+    # if: ${{ needs.publish.outputs.published == 'true' && needs.publish.outputs.images != '[]' }}
     strategy:
       matrix:
         package: ${{ fromJson(needs.publish.outputs.images) }}
