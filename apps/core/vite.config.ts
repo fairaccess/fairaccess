@@ -6,4 +6,7 @@ export default defineConfig({
     port: 5001,
   },
   plugins: [sveltekit()],
+  ssr: {
+    external: ["bun:*"],
+  },
 });
