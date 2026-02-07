@@ -27,15 +27,15 @@ export const actions: Actions = {
 
     try {
       await auth.api.signInEmail({
-        headers: request.headers,
         body: { email, password },
       });
-      throw redirect(303, "/users");
     } catch (error) {
       return fail(400, {
         error: error instanceof Error ? error.message : "Unable to sign in.",
       });
     }
+
+    throw redirect(303, "/users");
   },
 
   signUp: async ({ request }) => {
@@ -50,14 +50,14 @@ export const actions: Actions = {
 
     try {
       await auth.api.signUpEmail({
-        headers: request.headers,
         body: { name, email, password },
       });
-      throw redirect(303, "/users");
     } catch (error) {
       return fail(400, {
         error: error instanceof Error ? error.message : "Unable to sign up.",
       });
     }
+
+    throw redirect(303, "/users");
   },
 };
