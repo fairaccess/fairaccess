@@ -12,6 +12,7 @@ jobs:
   build:
     name: Checks
     runs-on: srv-obin-ch_ubuntu-latest
+    if: github.head_ref != 'changeset-release/main'
 
     steps:
       - name: Checkout repository
