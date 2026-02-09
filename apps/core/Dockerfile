@@ -8,9 +8,11 @@ WORKDIR /usr/src/app
 
 FROM base AS release
 COPY --from=builder /usr/src/app/apps/core/dist ./dist
-COPY --from=builder /usr/src/app/apps/core/scripts ./scripts
 COPY --from=builder /usr/src/app/libs/db/src/db/migrations ./migrations
+COPY --from=builder /usr/src/app/apps/core/scripts/entrypoint.sh ./entrypoint.sh
+
+ENV NODE_ENV=production
 
 USER bun
 EXPOSE 3000/tcp
-ENTRYPOINT [ "bun", "run", "dist/index.js" ]
+ENTRYPOINT [ "./entrypoint.sh" ]

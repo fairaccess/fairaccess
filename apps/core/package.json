@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "bun --bun vite dev --host",
-    "build": "vite build",
+    "build": "bun --bun vite build && bun build scripts/migrate.ts --outfile dist/migrate.js --target bun",
     "preview": "vite preview",
     "db:migrate": "npx tsx scripts/migrate.ts",
     "prepare": "svelte-kit sync || echo ''",

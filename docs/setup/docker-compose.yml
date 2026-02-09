@@ -1,0 +1,77 @@
+networks:
+  fairaccess:
+    name: fairaccess
+    external: true
+  proxy:
+    name: proxy
+    external: true
+
+volumes:
+  database:
+    name: database
+    driver: local
+
+services:
+  core-migrate:
+    image: codeberg.org/fairaccess/fairaccess-core:0.0.44
+    restart: "no"
+    volumes:
+      - database:/database
+    environment:
+      DATABASE_URL: /database/fairaccess.db
+    command: ["migrate"]
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+      - "com.centurylinklabs.watchtower.scope=fairaccess"
+    networks:
+      - fairaccess
+
+  core:
+    image: codeberg.org/fairaccess/fairaccess-core:0.0.44
+    restart: unless-stopped
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    volumes:
+      - database:/database
+    environment:
+      DATABASE_URL: /database/fairaccess.db
+      BETTER_AUTH_SECRET: supersecret
+      BETTER_AUTH_URL: https://fairaccess.ch
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+      - "com.centurylinklabs.watchtower.scope=fairaccess"
+      - "traefik.enable=true"
+      - "traefik.http.routers.core.rule=Host(`fairaccess.ch`)"
+      - "traefik.http.routers.core.entrypoints=http,https"
+      - "traefik.http.middlewares.redirect-https.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.redirect-https.redirectscheme.permanent=true"
+      - "traefik.http.routers.core.middlewares=redirect-https"
+      - "traefik.http.routers.core.tls=true"
+      - "traefik.http.routers.core.tls.certresolver=letsencrypt"
+      - "traefik.http.services.core.loadbalancer.server.port=3000"
+    networks:
+      - proxy
+      - fairaccess
+
+  watchtower:
+    image: docker.io/nickfedor/watchtower:1.14.1
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command:
+      - "--debug"
+      - "--http-api-update"
+      - "--label-enable"
+    environment:
+      WATCHTOWER_HTTP_API_TOKEN: ${FAIRACCESS_WATCHTOWER_HTTP_API_TOKEN}
+      WATCHTOWER_SCOPE: "fairaccess"
+    labels:
+      - "com.centurylinklabs.watchtower.scope=fairaccess"
+      - "traefik.enable=true"
+      - "traefik.http.routers.watchtowerHttps.rule=Host(`fairaccess.ch`) && PathPrefix(`/v1/update`)"
+      - "traefik.http.routers.watchtowerHttps.entrypoints=https"
+      - "traefik.http.routers.watchtowerHttps.tls.certresolver=letsencrypt"
+      - "traefik.http.services.watchtowerHttps.loadbalancer.server.port=8080"
+    networks:
+      - fairaccess
