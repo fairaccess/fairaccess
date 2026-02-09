@@ -10,6 +10,7 @@ FROM base AS release
 COPY --from=builder /usr/src/app/apps/core/dist ./dist
 COPY --from=builder /usr/src/app/libs/db/src/db/migrations ./migrations
 COPY --from=builder /usr/src/app/apps/core/scripts/entrypoint.sh ./entrypoint.sh
+RUN chmod +x ./entrypoint.sh
 
 ENV NODE_ENV=production
 
