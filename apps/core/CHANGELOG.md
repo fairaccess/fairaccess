@@ -1,5 +1,11 @@
 # @fairaccess/core
 
+## 0.0.47
+
+### Patch Changes
+
+- 7ecf96e: Optimize migration script
+
 ## 0.0.46
 
 ### Patch Changes
