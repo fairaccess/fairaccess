@@ -1,5 +1,11 @@
 # @fairaccess/core
 
+## 0.0.45
+
+### Patch Changes
+
+- 0cc8d37: Add migrate script
+
 ## 0.0.44
 
 ### Patch Changes
