@@ -1,5 +1,11 @@
 # @fairaccess/core
 
+## 0.0.48
+
+### Patch Changes
+
+- 3650e7e: Runtime environment variables
+
 ## 0.0.47
 
 ### Patch Changes
