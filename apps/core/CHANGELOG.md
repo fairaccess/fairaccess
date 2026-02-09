@@ -1,5 +1,11 @@
 # @fairaccess/core
 
+## 0.0.46
+
+### Patch Changes
+
+- 1dcab8e: Permit entrypoint
+
 ## 0.0.45
 
 ### Patch Changes
