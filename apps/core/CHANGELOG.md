@@ -1,5 +1,11 @@
 # @fairaccess/core
 
+## 0.0.51
+
+### Patch Changes
+
+- ee24f1b: Revive stopped services
+
 ## 0.0.50
 
 ### Patch Changes
