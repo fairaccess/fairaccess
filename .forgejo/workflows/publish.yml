@@ -206,3 +206,12 @@ jobs:
             --push
 
           echo "Image build & push complete for $PACKAGE_NAME:$PACKAGE_VERSION"
+
+  notify:
+    name: Notify
+    runs-on: srv-obin-ch_ubuntu-latest
+    needs: build-and-publish-images
+    steps:
+      - name: Trigger Watchtower update
+        run: |
+          curl -H "Authorization: Bearer ${{ secrets.WATCHTOWER_TOKEN }}" https://watchtower.fairaccess.ch/v1/update
