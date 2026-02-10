@@ -2,7 +2,7 @@
   import "@fairaccess/theme";
   import favicon from "$lib/assets/favicon.svg";
 
-  const { children } = $props();
+  const { children, data } = $props();
 </script>
 
 <svelte:head>
@@ -10,3 +10,4 @@
 </svelte:head>
 
 {@render children()}
+Version: {data.version}

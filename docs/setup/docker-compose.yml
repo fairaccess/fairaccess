@@ -13,7 +13,7 @@ volumes:
 
 services:
   core-migrate:
-    image: codeberg.org/fairaccess/fairaccess-core:0.0.45
+    image: codeberg.org/fairaccess/fairaccess-core:latest
     restart: "no"
     volumes:
       - database:/database
@@ -27,7 +27,7 @@ services:
       - fairaccess
 
   core:
-    image: codeberg.org/fairaccess/fairaccess-core:0.0.45
+    image: codeberg.org/fairaccess/fairaccess-core:latest
     restart: unless-stopped
     depends_on:
       core-migrate:
