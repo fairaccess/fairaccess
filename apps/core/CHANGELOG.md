@@ -1,5 +1,11 @@
 # @fairaccess/core
 
+## 0.0.50
+
+### Patch Changes
+
+- 0c9709a: Show version
+
 ## 0.0.49
 
 ### Patch Changes
