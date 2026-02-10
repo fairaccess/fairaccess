@@ -1,5 +1,11 @@
 # @fairaccess/core
 
+## 0.0.49
+
+### Patch Changes
+
+- 91310f3: Add watchtower notification
+
 ## 0.0.48
 
 ### Patch Changes
