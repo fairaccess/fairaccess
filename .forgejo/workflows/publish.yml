@@ -214,4 +214,4 @@ jobs:
     steps:
       - name: Trigger Watchtower update
         run: |
-          curl -H "Authorization: Bearer ${{ secrets.WATCHTOWER_TOKEN }}" https://watchtower.fairaccess.ch/v1/update
+          curl -H "Authorization: Bearer ${{ secrets.WATCHTOWER_TOKEN }}" https://watchtower.fairaccess.ch/v1/update --show-error --fail
