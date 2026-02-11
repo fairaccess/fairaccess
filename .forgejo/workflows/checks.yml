@@ -42,7 +42,7 @@ jobs:
     name: Run end-to-end tests
     runs-on: srv-obin-ch_ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.58.1-noble
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
 
     steps:
       - name: Install dependencies
