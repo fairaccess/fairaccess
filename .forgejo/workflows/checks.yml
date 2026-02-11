@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  build:
+  lint:
     name: Run checks
     runs-on: srv-obin-ch_ubuntu-latest
 
