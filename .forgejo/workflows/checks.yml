@@ -43,6 +43,8 @@ jobs:
     runs-on: srv-obin-ch_ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.58.2-noble
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
 
     steps:
       - name: Install dependencies
@@ -74,5 +76,3 @@ jobs:
 
       - name: Run end-to-end tests
         run: bun run test:e2e
-        env:
-          PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
