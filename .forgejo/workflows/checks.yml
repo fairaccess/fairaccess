@@ -45,6 +45,10 @@ jobs:
       image: mcr.microsoft.com/playwright:v1.58.1-noble
 
     steps:
+      - name: Install dependencies
+        run: apt-get update && apt-get install -y --no-install-recommends \
+          unzip
+
       - name: Check out repository
         uses: actions/checkout@v6
 
