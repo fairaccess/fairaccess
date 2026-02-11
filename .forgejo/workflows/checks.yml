@@ -74,3 +74,5 @@ jobs:
 
       - name: Run end-to-end tests
         run: bun run test:e2e
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
