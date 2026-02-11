@@ -12,7 +12,6 @@ jobs:
   build:
     name: Checks
     runs-on: srv-obin-ch_ubuntu-latest
-    if: github.head_ref != 'changeset-release/main'
 
     steps:
       - name: Checkout repository
@@ -38,3 +37,29 @@ jobs:
 
       - name: Check code
         run: bun run check
+
+  end-to-end-tests:
+    name: End-to-End tests
+    runs-on: srv-obin-ch_ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.8
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps

@@ -19,6 +19,8 @@
     "check": "biome check",
     "check:fix": "biome check --fix",
     "tag": "changeset tag",
+    "test:e2e": "turbo run test:e2e",
+    "test": "turbo run test",
     "version": "changeset version && bun install",
     "changeset": "changeset"
   },

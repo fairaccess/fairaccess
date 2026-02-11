@@ -19,6 +19,7 @@
     "editor.defaultFormatter": "biomejs.biome"
   },
   "json.schemaDownload.trustedDomains": {
-    "https://biomejs.dev": true
+    "https://biomejs.dev": true,
+    "https://turborepo.com/schema.json": true
   }
 }
