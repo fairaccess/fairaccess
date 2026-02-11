@@ -39,7 +39,7 @@ jobs:
         run: bun run check
 
   end-to-end-tests:
-    name: Run End-to-End tests
+    name: Run end-to-end tests
     runs-on: srv-obin-ch_ubuntu-latest
 
     steps:
@@ -65,6 +65,9 @@ jobs:
           key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
           restore-keys: |
             ${{ runner.os }}-bun-
+
+      - name: Copy environment variables
+        run: cp apps/core/.env.example apps/core/.env.local
 
       - name: Install dependencies
         run: bun install
