@@ -61,5 +61,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-bun-
 
+      - name: Install dependencies
+        run: bun install
+
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: bunx playwright install --with-deps
+
+      - name: Run end-to-end tests
+        run: bun run test:e2e
