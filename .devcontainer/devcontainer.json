@@ -17,5 +17,10 @@
     "ghcr.io/devcontainers/features/desktop-lite:1": {}
   },
   "postCreateCommand": "sudo bunx playwright install-deps && bunx playwright install",
-  "forwardPorts": [5001]
+  "forwardPorts": [5001],
+  "portsAttributes": {
+    "5001": {
+      "label": "Development server"
+    }
+  }
 }
