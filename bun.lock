@@ -17,7 +17,7 @@
     },
     "apps/core": {
       "name": "@fairaccess/core",
-      "version": "0.0.53",
+      "version": "0.0.54",
       "dependencies": {
         "@fairaccess/auth": "workspace:*",
         "drizzle-orm": "^0.45.1",
@@ -67,7 +67,7 @@
     },
     "libs/theme": {
       "name": "@fairaccess/theme",
-      "version": "0.0.31",
+      "version": "0.0.32",
       "dependencies": {
         "bits-ui": "^2.15.5",
       },
