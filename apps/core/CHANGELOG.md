@@ -1,5 +1,11 @@
 # @fairaccess/core
 
+## 0.0.54
+
+### Patch Changes
+
+- 1f58cb4: Add logo
+
 ## 0.0.53
 
 ### Patch Changes
