@@ -1,0 +1,17 @@
+{
+  "name": "@fairaccess/i18n",
+  "version": "0.0.31",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "scripts": {},
+  "peerDependencies": {},
+  "dependencies": {
+    "@nanostores/i18n": "^1.2.2",
+    "nanostores": "^1.1.0"
+  }
+}
