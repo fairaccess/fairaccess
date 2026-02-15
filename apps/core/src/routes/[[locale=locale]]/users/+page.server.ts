@@ -73,6 +73,6 @@ export const actions: Actions = {
 
   logout: async ({ request }) => {
     await auth.api.signOut({ headers: request.headers });
-    throw redirect(303, "/login");
+    throw redirect(303, "../login");
   },
 };

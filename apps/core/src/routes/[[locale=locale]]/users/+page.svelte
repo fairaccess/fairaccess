@@ -3,7 +3,7 @@
   import { goto, invalidateAll } from "$app/navigation";
   import { page } from "$app/state";
   import type { User } from "$lib/server/types";
-  import type { PageData } from "../users/$types";
+  import type { PageData } from "./$types";
 
   let { data }: { data: PageData } = $props();
 

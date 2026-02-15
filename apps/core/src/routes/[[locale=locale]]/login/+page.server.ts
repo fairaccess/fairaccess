@@ -1,9 +1,16 @@
+import { DEFAULT_LOCALE } from "@fairaccess/i18n";
 import { type Actions, fail, redirect } from "@sveltejs/kit";
 import { auth } from "$lib/server/auth";
 
-export const load = async ({ locals }) => {
+function getLocalePath(params: { locale?: string }, path: string) {
+  const locale = params.locale;
+  if (!locale || locale === DEFAULT_LOCALE) return path;
+  return `/${locale}${path}`;
+}
+
+export const load = async ({ locals, params }) => {
   if (locals.session) {
-    throw redirect(303, "/users");
+    throw redirect(303, getLocalePath(params, "/users"));
   }
 
   return {};
@@ -35,7 +42,7 @@ export const actions: Actions = {
       });
     }
 
-    throw redirect(303, "/users");
+    throw redirect(303, "../users");
   },
 
   signUp: async ({ request }) => {
@@ -58,6 +65,6 @@ export const actions: Actions = {
       });
     }
 
-    throw redirect(303, "/users");
+    throw redirect(303, "../users");
   },
 };
