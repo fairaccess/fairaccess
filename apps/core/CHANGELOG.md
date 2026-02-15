@@ -1,5 +1,11 @@
 # @fairaccess/core
 
+## 0.0.52
+
+### Patch Changes
+
+- 9a2d950: Add i18n
+
 ## 0.0.51
 
 ### Patch Changes
