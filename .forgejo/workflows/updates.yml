@@ -30,10 +30,7 @@ jobs:
           RENOVATE_PLATFORM: forgejo
           RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
           RENOVATE_GIT_AUTHOR: "openscript-bot <r+codebergbot@obin.ch>"
-          RENOVATE_CONFIG_FILE_NAMES: '[".forgejo/renovate.json"]'
-
           RENOVATE_X_SQLITE_PACKAGE_CACHE: true
-
           GIT_AUTHOR_NAME: "openscript-bot"
           GIT_AUTHOR_EMAIL: "r+codebergbot@obin.ch"
           GIT_COMMITTER_NAME: "openscript-bot"
