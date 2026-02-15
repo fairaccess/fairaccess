@@ -2,11 +2,6 @@
   import { DEFAULT_LOCALE, type Locale, SUPPORTED_LOCALES } from "@fairaccess/i18n";
   import { page } from "$app/state";
 
-  const LOCALE_LABELS: Record<Locale, string> = {
-    "en-US": "English",
-    "de-CH": "Deutsch (CH)",
-  };
-
   const currentLocale = $derived(
     ((page.params as Record<string, string>).locale as Locale) || DEFAULT_LOCALE
   );
@@ -36,7 +31,7 @@
       class:active={currentLocale === locale}
       aria-current={currentLocale === locale ? "page" : undefined}
     >
-      {LOCALE_LABELS[locale]}
+      {new Intl.DisplayNames([locale], { type: "language", languageDisplay: "standard", style: "short" }).of(locale)}
     </a>
   {/each}
 </nav>
