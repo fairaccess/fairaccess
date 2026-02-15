@@ -1,35 +1,33 @@
 <script lang="ts">
   import "@fairaccess/theme";
-  import favicon from "$lib/assets/favicon.svg";
+  import "./+layout.css";
   import LanguageSwitcher from "$lib/components/LanguageSwitcher.svelte";
+  import Header from "$lib/layout/Header.svelte";
 
   const { children, data } = $props();
 </script>
 
 <svelte:head>
-  <link rel="icon" href={favicon} />
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="FairAccess" />
+  <link rel="manifest" href="/site.webmanifest" />
 </svelte:head>
 
-<header class="app-header">
+<Header>
   <LanguageSwitcher />
-</header>
+</Header>
 
-{@render children()}
+<main>
+  {@render children()}
+</main>
+
 <footer>Version: {data.version}</footer>
 
 <style>
-  .app-header {
-    display: flex;
-    justify-content: flex-end;
-    padding: 0.5rem 1rem;
-    border-bottom: 1px solid var(--border-color, #eee);
-  }
-
-  footer {
-    margin-top: 2rem;
-    padding: 1rem;
-    text-align: center;
-    font-size: 0.75rem;
-    color: var(--text-muted, #666);
+  main {
+    flex-grow: 1;
   }
 </style>

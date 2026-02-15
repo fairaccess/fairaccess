@@ -23,6 +23,7 @@
     "@fairaccess/i18n": "workspace:*",
     "@fairaccess/theme": "workspace:*",
     "@playwright/test": "^1.58.2",
+    "@poppanator/sveltekit-svg": "^6.0.1",
     "@sveltejs/adapter-node": "^5.5.3",
     "@sveltejs/kit": "^2.52.0",
     "@sveltejs/vite-plugin-svelte": "^6.2.4",
