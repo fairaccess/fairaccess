@@ -10,4 +10,5 @@ export const i18n = createI18n(currentLocale, {
   baseLocale: DEFAULT_LOCALE,
   cache: { "de-CH": deCH, "en-US": enUS },
   get: async () => ({}),
+  isSSR: true,
 });
