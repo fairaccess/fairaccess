@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev",
+    "dev": "turbo run dev --log-order stream",
     "upgrade": "ncu -i -w && bun install",
     "lint": "biome lint",
     "check": "biome check",
@@ -29,7 +29,7 @@
     "@changesets/cli": "^2.29.8",
     "@types/bun": "^1.3.9",
     "npm-check-updates": "^19.3.2",
-    "turbo": "^2.8.6"
+    "turbo": "^2.8.9"
   },
   "peerDependencies": {
     "typescript": "^5"

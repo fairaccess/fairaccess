@@ -4,5 +4,6 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   server: { port: 5001 },
-  plugins: [sveltekit(), devtoolsJson()]
+  clearScreen: false,
+  plugins: [sveltekit(), devtoolsJson()],
 });
