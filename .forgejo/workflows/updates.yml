@@ -24,7 +24,7 @@ jobs:
       - name: Invoke Renovate
         run: renovate
         env:
-          LOG_LEVEL: debug
+          RENOVATE_GITHUB_COM_TOKEN: ${{ secrets.PAT_GITHUB_COM_TOKEN }}
           RENOVATE_BASE_DIR: ${{ github.workspace }}/.tmp
           RENOVATE_ENDPOINT: ${{ github.server_url }}
           RENOVATE_PLATFORM: forgejo
