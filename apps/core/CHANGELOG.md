@@ -1,5 +1,11 @@
 # @fairaccess/core
 
+## 0.0.53
+
+### Patch Changes
+
+- ca95dba: Include i18n package in the base image
+
 ## 0.0.52
 
 ### Patch Changes
