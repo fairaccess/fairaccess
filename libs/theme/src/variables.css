@@ -1,4 +1,13 @@
 :root {
   --color-primary: #0d2a42;
   --color-secondary: #469bac;
+
+  /* Derived colors */
+  --color-primary-80: hsl(from var(--color-primary) h s calc(l - 20));
+  --color-primary-120: hsl(from var(--color-primary) h s calc(l + 20));
+  --color-primary-140: hsl(from var(--color-primary) h s calc(l + 40));
+  --color-primary-160: hsl(from var(--color-primary) h s calc(l + 60));
+  --color-primary-180: hsl(from var(--color-primary) h s calc(l + 80));
+  --color-secondary-80: hsl(from var(--color-secondary) h s calc(l - 20));
+  --color-secondary-120: hsl(from var(--color-secondary) h s calc(l + 20));
 }
