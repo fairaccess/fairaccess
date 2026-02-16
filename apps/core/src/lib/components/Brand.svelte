@@ -19,7 +19,7 @@
 
     :global(svg) {
       min-height: 100%;
-      flex-shrink: 0;
+      width: auto;
     }
   }
 </style>

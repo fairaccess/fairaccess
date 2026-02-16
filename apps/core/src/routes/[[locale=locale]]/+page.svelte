@@ -1,4 +1,5 @@
 <script lang="ts">
+  import TablerMessageUser from 'virtual:icons/tabler/message-user';
   import { i18n } from "@fairaccess/i18n";
   import { Accordion } from "@fairaccess/theme";
 
@@ -8,6 +9,7 @@
 </script>
 
 <h1>{$homeMessages.title}</h1>
+<TablerMessageUser />
 <p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
 <Accordion.Root type="single">
   <Accordion.Item value="item-1">

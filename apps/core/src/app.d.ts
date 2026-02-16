@@ -15,3 +15,4 @@ declare global {
 }
 
 import "@poppanator/sveltekit-svg/dist/svg.d.ts";
+import "unplugin-icons/types/svelte";
