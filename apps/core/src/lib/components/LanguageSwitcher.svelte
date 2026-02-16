@@ -31,7 +31,7 @@
       class:active={currentLocale === locale}
       aria-current={currentLocale === locale ? "page" : undefined}
     >
-      {new Intl.DisplayNames([locale], { type: "language", languageDisplay: "standard", style: "short" }).of(locale)}
+      {new Intl.DisplayNames([locale], { type: "language", languageDisplay: "standard", style: "narrow" }).of(locale)}
     </a>
   {/each}
 </nav>
