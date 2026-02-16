@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev --log-order stream",
+    "dev": "turbo watch dev",
     "upgrade": "ncu -i -w && bun install",
     "lint": "biome lint",
     "check": "biome check",

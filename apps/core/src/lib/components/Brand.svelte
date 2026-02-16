@@ -2,7 +2,7 @@
   import { currentLocale, DEFAULT_LOCALE } from "@fairaccess/i18n";
   import Logo from "$lib/assets/logo.svg?component";
 
-  let { width = "80px" } = $props();
+  let { id = undefined } = $props();
 
   const locale = $derived($currentLocale);
   const homeHref = $derived(locale !== DEFAULT_LOCALE ? `/${locale}` : "/");
@@ -10,11 +10,22 @@
 
 <style>
   a {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 100%;
+    font-size: 61.8cqh;
+    line-height: 1;
+
+    :global(svg) {
+      min-height: 100%;
+      flex-shrink: 0;
+    }
   }
 </style>
 
-<a href={homeHref}>
-  <Logo {width} height="auto" />
+<a href={homeHref} {id}>
+  <Logo width="auto" height="100%" />
+  FairAccess
 </a>
 

@@ -2,6 +2,8 @@
   --color-primary: #0d2a42;
   --color-secondary: #469bac;
 
+  --width-page-padding: 20%;
+
   /* Derived colors */
   --color-primary-80: hsl(from var(--color-primary) h s calc(l - 20));
   --color-primary-120: hsl(from var(--color-primary) h s calc(l + 20));
@@ -10,4 +12,16 @@
   --color-primary-180: hsl(from var(--color-primary) h s calc(l + 80));
   --color-secondary-80: hsl(from var(--color-secondary) h s calc(l - 20));
   --color-secondary-120: hsl(from var(--color-secondary) h s calc(l + 20));
+}
+
+@media (width < 1200px) {
+  :root {
+    --width-page-padding: 10%;
+  }
+}
+
+@media (width < 800px) {
+  :root {
+    --width-page-padding: 1rem;
+  }
 }

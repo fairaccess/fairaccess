@@ -3,6 +3,27 @@ html {
 }
 
 body {
+  font-family: 'Readex Pro Variable', sans-serif;
   min-height: 100%;
   margin: 0;
+  font-size: 16px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+#title {
+  font-family: 'Fraunces Variable', serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.page-padding {
+  padding-inline: var(--width-page-padding);
 }

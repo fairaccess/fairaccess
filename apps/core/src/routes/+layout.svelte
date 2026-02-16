@@ -1,7 +1,6 @@
 <script lang="ts">
   import "@fairaccess/theme";
   import "./+layout.css";
-  import LanguageSwitcher from "$lib/components/LanguageSwitcher.svelte";
   import Header from "$lib/layout/Header.svelte";
 
   const { children, data } = $props();
@@ -16,9 +15,7 @@
   <link rel="manifest" href="/site.webmanifest" />
 </svelte:head>
 
-<Header>
-  <LanguageSwitcher />
-</Header>
+<Header />
 
 <main>
   {@render children()}
