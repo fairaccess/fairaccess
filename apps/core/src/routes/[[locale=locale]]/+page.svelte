@@ -1,6 +1,7 @@
 <script lang="ts">
   import { i18n } from "@fairaccess/i18n";
   import { Accordion } from "@fairaccess/theme";
+  import TablerAirBalloon from '~icons/tabler/air-balloon';
 
   const homeMessages = i18n("home", {
     title: "Welcome to SvelteKit",
@@ -8,6 +9,7 @@
 </script>
 
 <h1>{$homeMessages.title}</h1>
+<TablerAirBalloon />
 <p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
 <Accordion.Root type="single">
   <Accordion.Item value="item-1">
