@@ -1,5 +1,11 @@
 # @fairaccess/theme
 
+## 0.0.33
+
+### Patch Changes
+
+- 0d852bf: Add language switcher
+
 ## 0.0.32
 
 ### Patch Changes
