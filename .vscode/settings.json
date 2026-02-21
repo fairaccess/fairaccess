@@ -25,6 +25,7 @@
   "json.schemaDownload.trustedDomains": {
     "https://biomejs.dev": true,
     "https://turborepo.com": true,
-    "https://docs.renovatebot.com": true
+    "https://docs.renovatebot.com": true,
+    "https://unpkg.com/@changesets": true
   }
 }
