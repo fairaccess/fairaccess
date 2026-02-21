@@ -1,7 +1,7 @@
 <script lang="ts">
   import "@fairaccess/theme/index.css";
   import "./+layout.css";
-  import { i18n } from "@fairaccess/i18n";
+  import { DEFAULT_LOCALE, i18n, SUPPORTED_LOCALES } from "@fairaccess/i18n";
   import Header from "$lib/layout/Header.svelte";
 
   const { children, data } = $props();
@@ -14,6 +14,19 @@
     keywords: "swiss, services, open, available, rules, channels, security, privacy",
     author: "Robin Bühler",
   });
+
+  function getHrefLang(locale: string, path: string): string {
+    // Remove locale prefix from current path if it exists
+    const localePattern = SUPPORTED_LOCALES.join("|");
+    const pathWithoutLocale = path.replace(new RegExp(`^/(${localePattern})`), "") || "/";
+
+    // For default locale, don't add prefix
+    if (locale === DEFAULT_LOCALE) {
+      return pathWithoutLocale;
+    }
+
+    return `/${locale}${pathWithoutLocale}`;
+  }
 </script>
 
 <svelte:head>
@@ -27,6 +40,10 @@
   <meta name="description" content={$messages.description} />
   <meta name="keywords" content={$messages.keywords} />
   <meta name="author" content={$messages.author} />
+  {#each SUPPORTED_LOCALES as locale (locale)}
+    <link rel="alternate" hreflang={locale} href={`https://fairaccess.ch${getHrefLang(locale, data.path)}`} />
+  {/each}
+  <link rel="alternate" hreflang="x-default" href="https://fairaccess.ch{data.path}" />
 </svelte:head>
 
 <Header />
