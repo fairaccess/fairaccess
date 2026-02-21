@@ -1,5 +1,11 @@
 # @fairaccess/theme
 
+## 0.0.34
+
+### Patch Changes
+
+- 03938ec: Fix theme css loading in production
+
 ## 0.0.33
 
 ### Patch Changes
