@@ -1,5 +1,11 @@
 # @fairaccess/core
 
+## 0.0.55
+
+### Patch Changes
+
+- 0d852bf: Add language switcher
+
 ## 0.0.54
 
 ### Patch Changes
