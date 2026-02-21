@@ -115,7 +115,7 @@
               <small>{user.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'N/A'}</small>
             </div>
             <div class="user-actions">
-              <button onclick={() => startEdit(user)}>
+              <button type="button" onclick={() => startEdit(user)}>
                 Edit
               </button>
               <form method="POST" action="?/delete" use:enhance={() => {

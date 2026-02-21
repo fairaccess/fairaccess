@@ -1,15 +1,24 @@
 <script lang="ts">
   import { i18n } from "@fairaccess/i18n";
-  import { Accordion } from "@fairaccess/theme";
+  import { Accordion, Select } from "@fairaccess/theme";
   import TablerAirBalloon from '~icons/tabler/air-balloon';
 
   const homeMessages = i18n("home", {
     title: "Welcome to SvelteKit",
   });
+
+  const items = [
+    { value: "apple", label: "Apple" },
+    { value: "banana", label: "Banana" },
+    { value: "cherry", label: "Cherry" },
+  ];
+
+  let fruit = $state("apple");
 </script>
 
 <h1>{$homeMessages.title}</h1>
 <TablerAirBalloon />
+<Select {items} bind:value={fruit} placeholder="Select a fruit" />
 <p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
 <Accordion.Root type="single">
   <Accordion.Item value="item-1">
