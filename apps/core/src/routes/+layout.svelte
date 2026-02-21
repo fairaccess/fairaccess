@@ -2,12 +2,12 @@
   import "@fairaccess/theme/index.css";
   import "./+layout.css";
   import { DEFAULT_LOCALE, i18n, SUPPORTED_LOCALES } from "@fairaccess/i18n";
+  import Footer from "$lib/layout/Footer.svelte";
   import Header from "$lib/layout/Header.svelte";
 
   const { children, data } = $props();
 
   const messages = i18n("layout", {
-    version: "Version",
     title: "FairAccess",
     pageTitle: "FairAccess - Your device. Your choice. Your terms.",
     description: "Our mission is to making Swiss services open and available under your rules and through the channels you choose, while protecting your security and privacy.",
@@ -52,7 +52,7 @@
   {@render children()}
 </main>
 
-<footer>Version: {data.version}</footer>
+<Footer version={data.version} />
 
 <style>
   main {

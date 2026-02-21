@@ -2,8 +2,10 @@
   "home": {
     "title": "Benvenuto su SvelteKit"
   },
+  "footer": {
+    "version": "Versione"
+  },
   "layout": {
-    "version": "Versione",
     "title": "FairAccess",
     "pageTitle": "FairAccess - Il tuo dispositivo. La tua scelta. Le tue condizioni.",
     "description": "La nostra missione è rendere i servizi svizzeri aperti e disponibili secondo le tue regole e attraverso i canali che scegli, proteggendo la tua sicurezza e privacy.",

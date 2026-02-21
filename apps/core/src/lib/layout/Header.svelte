@@ -8,7 +8,7 @@
     display: flex;
     justify-content: space-between;
     background-color: var(--color-primary-180);
-    margin: 1rem;
+    margin-block: 1rem;
     padding: 0.5rem;
     border-radius: 900px;
     height: 3rem;
