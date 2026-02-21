@@ -1,5 +1,13 @@
 {
   "home": {
     "title": "Welcome to SvelteKit"
+  },
+  "layout": {
+    "version": "Version",
+    "title": "FairAccess",
+    "pageTitle": "FairAccess - Your device. Your choice. Your terms.",
+    "description": "Our mission is to making Swiss services open and available under your rules and through the channels you choose, while protecting your security and privacy.",
+    "keywords": "swiss, services, open, available, rules, channels, security, privacy",
+    "author": "Robin Bühler"
   }
 }

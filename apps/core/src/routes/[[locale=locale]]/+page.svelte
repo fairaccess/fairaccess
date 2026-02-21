@@ -3,7 +3,7 @@
   import { Accordion, Select } from "@fairaccess/theme";
   import TablerAirBalloon from '~icons/tabler/air-balloon';
 
-  const homeMessages = i18n("home", {
+  const messages = i18n("home", {
     title: "Welcome to SvelteKit",
   });
 
@@ -16,7 +16,7 @@
   let fruit = $state("apple");
 </script>
 
-<h1>{$homeMessages.title}</h1>
+<h1>{$messages.title}</h1>
 <TablerAirBalloon />
 <Select {items} bind:value={fruit} placeholder="Select a fruit" />
 <p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
