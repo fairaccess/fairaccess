@@ -1,5 +1,6 @@
 <script lang="ts">
   import "@fairaccess/theme";
+  import "@fairaccess/theme/index.css";
   import "./+layout.css";
   import Header from "$lib/layout/Header.svelte";
 
