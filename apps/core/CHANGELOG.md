@@ -1,5 +1,14 @@
 # @fairaccess/core
 
+## 0.0.57
+
+### Patch Changes
+
+- 8c436b5: Add i18n meta tags
+- 087827b: Add footer
+- 4db2d25: Add page title and meta
+- 5e4192f: Add header navigation
+
 ## 0.0.56
 
 ### Patch Changes

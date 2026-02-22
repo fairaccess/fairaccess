@@ -1,5 +1,11 @@
 # @fairaccess/theme
 
+## 0.0.35
+
+### Patch Changes
+
+- 087827b: Add footer
+
 ## 0.0.34
 
 ### Patch Changes

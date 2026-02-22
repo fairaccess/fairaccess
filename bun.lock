@@ -19,7 +19,7 @@
     },
     "apps/core": {
       "name": "@fairaccess/core",
-      "version": "0.0.56",
+      "version": "0.0.57",
       "dependencies": {
         "@fairaccess/auth": "workspace:*",
         "drizzle-orm": "^0.45.1",
@@ -71,7 +71,7 @@
     },
     "libs/theme": {
       "name": "@fairaccess/theme",
-      "version": "0.0.34",
+      "version": "0.0.35",
       "dependencies": {
         "@fontsource-variable/fraunces": "^5.2.9",
         "@fontsource-variable/readex-pro": "^5.2.11",
