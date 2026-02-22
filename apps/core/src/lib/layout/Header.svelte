@@ -10,13 +10,14 @@
     background-color: var(--color-primary-180);
     margin-block: 1rem;
     padding: 0.5rem;
+    padding-inline-end: 1rem;
     border-radius: 900px;
     height: 3rem;
     container-type: size;
   }
 </style>
 
-<header class="page-padding">
+<header class="page-margin">
   <Brand id="title" />
   <LanguageSwitcher />
 </header>

@@ -4,6 +4,7 @@
   import { DEFAULT_LOCALE, i18n, SUPPORTED_LOCALES } from "@fairaccess/i18n";
   import Footer from "$lib/layout/Footer.svelte";
   import Header from "$lib/layout/Header.svelte";
+  import Main from "$lib/layout/Main.svelte";
 
   const { children, data } = $props();
 
@@ -48,14 +49,8 @@
 
 <Header />
 
-<main>
+<Main>
   {@render children()}
-</main>
+</Main>
 
 <Footer version={data.version} />
-
-<style>
-  main {
-    flex-grow: 1;
-  }
-</style>

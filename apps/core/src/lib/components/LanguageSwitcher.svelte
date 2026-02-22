@@ -3,6 +3,7 @@
   import { Select } from "@fairaccess/theme";
   import { goto } from "$app/navigation";
   import { page } from "$app/state";
+  import LanguageIcon from '~icons/tabler/language';
 
   const currentLocale = $derived(
     ((page.params as Record<string, string>).locale as Locale) || DEFAULT_LOCALE
@@ -41,6 +42,7 @@
 
 <nav aria-label="Language selection">
   <Select
+    Trigger={LanguageIcon}
     items={localeItems}
     value={currentLocale}
     onValueChange={handleLocaleChange}

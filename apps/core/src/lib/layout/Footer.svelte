@@ -22,6 +22,6 @@
   }
 </style>
 
-<footer class="page-padding">
+<footer class="page-margin">
   <span>{$messages.version}: {props.version}</span>
 </footer>
