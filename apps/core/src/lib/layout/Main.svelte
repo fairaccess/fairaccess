@@ -3,8 +3,11 @@
 </script>
 
 <style>
+  main {
+    padding: 1rem;
+  }
 </style>
 
-<main class="page-padding">
+<main class="page-margin">
   {@render children()}
 </main>

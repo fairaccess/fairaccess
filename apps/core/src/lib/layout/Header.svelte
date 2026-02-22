@@ -1,12 +1,13 @@
 <script lang="ts">
   import Brand from "$lib/components/Brand.svelte";
-  import LanguageSwitcher from "$lib/components/LanguageSwitcher.svelte";
+  import Navigation from "./Navigation.svelte";
 </script>
 
 <style>
   header {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 100%;
     background-color: var(--color-primary-180);
     margin-block: 1rem;
     padding: 0.5rem;
@@ -19,5 +20,5 @@
 
 <header class="page-margin">
   <Brand id="title" />
-  <LanguageSwitcher />
+  <Navigation />
 </header>
