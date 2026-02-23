@@ -18,27 +18,27 @@ export function getDefaultDbPath(): string {
  */
 export function createSqliteConnection(databaseUrl?: string): Database {
   const dbPath = databaseUrl || getDefaultDbPath();
-  
+
   // Check if database file exists
   const dbExists = existsSync(dbPath);
-  
+
   // Ensure the directory exists
   const dbDir = dirname(dbPath);
   if (!existsSync(dbDir)) {
     mkdirSync(dbDir, { recursive: true });
     console.log(`📁 Created database directory: ${dbDir}`);
   }
-  
+
   // Create or open the database
   const sqlite = new Database(dbPath);
-  
+
   // Print message based on whether DB was created or opened
   if (!dbExists) {
     console.log(`✨ Created new database: ${dbPath}`);
   } else {
     console.log(`📂 Opened existing database: ${dbPath}`);
   }
-  
+
   sqlite.run("PRAGMA journal_mode = WAL");
   sqlite.run("PRAGMA synchronous = NORMAL");
   sqlite.run("PRAGMA busy_timeout = 5000");
