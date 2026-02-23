@@ -1,5 +1,5 @@
 import { Database } from "bun:sqlite";
-import { existsSync, mkdirSync } from "node:fs";
+import { existsSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { drizzle } from "drizzle-orm/bun-sqlite";
 import * as schema from "./schema.ts";
@@ -27,7 +27,9 @@ export function createSqliteConnection(databaseUrl?: string): Database {
     console.error(`❌ Failed to open database: ${dbPath}`);
     console.error(`Directory: ${dbDir}`);
     console.error(`Directory exists: ${existsSync(dbDir)}`);
-    console.error(`Error: ${error instanceof Error ? error.message : String(error)}`);
+    console.error(
+      `Error: ${error instanceof Error ? error.message : String(error)}`,
+    );
     throw error;
   }
 
