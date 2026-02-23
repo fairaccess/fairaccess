@@ -19,7 +19,7 @@
     },
     "apps/core": {
       "name": "@fairaccess/core",
-      "version": "0.0.57",
+      "version": "0.0.58",
       "dependencies": {
         "@fairaccess/auth": "workspace:*",
         "drizzle-orm": "^0.45.1",
@@ -45,7 +45,7 @@
     },
     "libs/auth": {
       "name": "@fairaccess/auth",
-      "version": "0.0.31",
+      "version": "0.0.32",
       "dependencies": {
         "@fairaccess/db": "workspace:*",
         "better-auth": "^1.4.18",
@@ -53,7 +53,7 @@
     },
     "libs/db": {
       "name": "@fairaccess/db",
-      "version": "0.0.31",
+      "version": "0.0.32",
       "dependencies": {
         "drizzle-orm": "^0.45.1",
       },
