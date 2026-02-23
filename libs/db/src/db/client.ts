@@ -19,24 +19,16 @@ export function getDefaultDbPath(): string {
 export function createSqliteConnection(databaseUrl?: string): Database {
   const dbPath = databaseUrl || getDefaultDbPath();
 
-  // Check if database file exists
-  const dbExists = existsSync(dbPath);
-
-  // Ensure the directory exists
-  const dbDir = dirname(dbPath);
-  if (!existsSync(dbDir)) {
-    mkdirSync(dbDir, { recursive: true });
-    console.log(`📁 Created database directory: ${dbDir}`);
-  }
-
-  // Create or open the database
-  const sqlite = new Database(dbPath);
-
-  // Print message based on whether DB was created or opened
-  if (!dbExists) {
-    console.log(`✨ Created new database: ${dbPath}`);
-  } else {
-    console.log(`📂 Opened existing database: ${dbPath}`);
+  let sqlite: Database;
+  try {
+    sqlite = new Database(dbPath);
+  } catch (error) {
+    const dbDir = dirname(dbPath);
+    console.error(`❌ Failed to open database: ${dbPath}`);
+    console.error(`Directory: ${dbDir}`);
+    console.error(`Directory exists: ${existsSync(dbDir)}`);
+    console.error(`Error: ${error instanceof Error ? error.message : String(error)}`);
+    throw error;
   }
 
   sqlite.run("PRAGMA journal_mode = WAL");

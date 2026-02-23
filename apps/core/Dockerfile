@@ -14,6 +14,5 @@ RUN chmod +x ./entrypoint.sh
 
 ENV NODE_ENV=production
 
-USER bun
 EXPOSE 3000/tcp
 ENTRYPOINT [ "./entrypoint.sh" ]
