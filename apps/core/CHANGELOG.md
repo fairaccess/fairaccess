@@ -1,5 +1,12 @@
 # @fairaccess/core
 
+## 0.0.59
+
+### Patch Changes
+
+- a525ae3: Tune database creation
+  - @fairaccess/auth@0.0.33
+
 ## 0.0.58
 
 ### Patch Changes
