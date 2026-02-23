@@ -1,5 +1,11 @@
 # @fairaccess/core
 
+## 0.0.58
+
+### Patch Changes
+
+- @fairaccess/auth@0.0.32
+
 ## 0.0.57
 
 ### Patch Changes
