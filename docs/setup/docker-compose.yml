@@ -1,20 +1,18 @@
 networks:
   fairaccess:
     name: fairaccess
-    external: true
   proxy:
     name: proxy
     external: true
 
 volumes:
   database:
-    name: database
     driver: local
 
 services:
   core-migrate:
     image: codeberg.org/fairaccess/fairaccess-core:latest
-    restart: "no"
+    restart: no
     volumes:
       - database:/database
     environment:

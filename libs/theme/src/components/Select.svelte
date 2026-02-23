@@ -34,7 +34,7 @@
 </script>
 
 <Select.Root bind:value={value as never} {type} {...restProps}>
-  <Select.Trigger class={triggerClass}>
+  <Select.Trigger class={triggerClass} title={selectedLabel ? selectedLabel : placeholder}>
     {#if Trigger}
       <Trigger />
     {:else}
