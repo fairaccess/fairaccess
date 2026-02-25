@@ -37,24 +37,17 @@ export const handle: Handle = async ({ event, resolve }) => {
   const pathWithoutLocale = getPathWithoutLocale(pathname);
   const locale = getLocaleFromPath(pathname);
   const localePrefix = locale !== DEFAULT_LOCALE ? `/${locale}` : "";
-  event.locals.session = null;
+  const session = await auth.api.getSession({
+    headers: event.request.headers,
+  });
+  event.locals.session = session;
 
-  if (
-    pathWithoutLocale.startsWith("/users") ||
-    pathWithoutLocale === "/login"
-  ) {
-    const session = await auth.api.getSession({
-      headers: event.request.headers,
-    });
-    event.locals.session = session;
+  if (pathWithoutLocale.startsWith("/users") && !session) {
+    throw redirect(303, `${localePrefix}/login`);
+  }
 
-    if (pathWithoutLocale.startsWith("/users") && !session) {
-      throw redirect(303, `${localePrefix}/login`);
-    }
-
-    if (pathWithoutLocale === "/login" && session) {
-      throw redirect(303, `${localePrefix}/users`);
-    }
+  if (pathWithoutLocale === "/login" && session) {
+    throw redirect(303, `${localePrefix}/users`);
   }
 
   // Wrap resolve to add html_attributes with the correct lang
