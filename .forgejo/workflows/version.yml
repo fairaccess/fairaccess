@@ -33,7 +33,7 @@ jobs:
         run: bun install
 
       - name: Create Release Pull Request
-        uses: https://github.com/changesets/action@v1
+        uses: https://github.com/openscript/changesets-action@main
         id: changesets
         with:
           version: bun run version
