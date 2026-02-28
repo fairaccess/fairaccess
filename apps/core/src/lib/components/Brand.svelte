@@ -1,11 +1,8 @@
 <script lang="ts">
-  import { currentLocale, DEFAULT_LOCALE } from "@fairaccess/i18n";
   import Logo from "$lib/assets/logo.svg?component";
+  import { resolveWithCurrentLocale } from "$lib/routes-client";
 
   let { id = undefined } = $props();
-
-  const locale = $derived($currentLocale);
-  const homeHref = $derived(locale !== DEFAULT_LOCALE ? `/${locale}` : "/");
 </script>
 
 <style>
@@ -24,7 +21,7 @@
   }
 </style>
 
-<a href={homeHref} {id}>
+<a href={resolveWithCurrentLocale("/")} {id}>
   <Logo width="auto" height="100%" />
   FairAccess
 </a>

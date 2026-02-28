@@ -1,5 +1,10 @@
 <script lang="ts">
+  import { i18n } from "@fairaccess/i18n";
   import { Input } from "@fairaccess/theme";
+
+  const messages = i18n("login", {
+    title: "Welcome to SvelteKit",
+  });
 
   let { form } = $props();
 </script>

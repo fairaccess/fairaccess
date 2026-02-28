@@ -1,16 +1,10 @@
-import { DEFAULT_LOCALE } from "@fairaccess/i18n";
 import { type Actions, fail, redirect } from "@sveltejs/kit";
+import { resolveWithLocale } from "$lib/routes";
 import { auth } from "$lib/server/auth";
-
-function getLocalePath(params: { locale?: string }, path: string) {
-  const locale = params.locale;
-  if (!locale || locale === DEFAULT_LOCALE) return path;
-  return `/${locale}${path}`;
-}
 
 export const load = async ({ locals, params }) => {
   if (locals.session) {
-    throw redirect(303, getLocalePath(params, "/users"));
+    throw redirect(303, resolveWithLocale("/users", params));
   }
 
   return {};
