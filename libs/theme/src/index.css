@@ -61,3 +61,13 @@ button,
     background-color: var(--color-primary-180);
   }
 }
+
+*::selection {
+  background-color: var(--color-primary-120);
+  color: var(--color-white);
+}
+
+*:focus {
+  outline: 0.1em solid var(--color-primary-120);
+  outline-offset: 0.1em;
+}

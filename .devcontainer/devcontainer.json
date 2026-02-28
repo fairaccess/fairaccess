@@ -21,5 +21,8 @@
     "5001": {
       "label": "Development server"
     }
+  },
+  "containerEnv": {
+    "DO_NOT_TRACK": "1"
   }
 }
