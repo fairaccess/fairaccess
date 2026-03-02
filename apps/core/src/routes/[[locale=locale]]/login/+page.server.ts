@@ -17,7 +17,7 @@ function getField(data: FormData, key: string) {
 }
 
 export const actions: Actions = {
-  signIn: async ({ request }) => {
+  signIn: async ({ request, params }) => {
     const data = await request.formData();
     const email = getField(data, "email");
     const password = getField(data, "password");
@@ -36,10 +36,10 @@ export const actions: Actions = {
       });
     }
 
-    throw redirect(303, "../users");
+    throw redirect(303, resolveWithLocale("/users", params));
   },
 
-  signUp: async ({ request }) => {
+  signUp: async ({ request, params }) => {
     const data = await request.formData();
     const name = getField(data, "name");
     const email = getField(data, "email");
@@ -59,6 +59,6 @@ export const actions: Actions = {
       });
     }
 
-    throw redirect(303, "../users");
+    throw redirect(303, resolveWithLocale("/users", params));
   },
 };

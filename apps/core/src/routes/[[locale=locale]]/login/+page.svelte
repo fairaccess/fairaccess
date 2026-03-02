@@ -3,11 +3,17 @@
   import { Input } from "@fairaccess/theme";
 
   const messages = i18n("login", {
-    title: "Welcome to SvelteKit",
+    title: "Login",
+    description: "Sign in to your account"
   });
 
   let { form } = $props();
 </script>
+
+<section>
+  <h1>{$messages.title}</h1>
+  <p>{$messages.description}</p>
+</section>
 
 <div class="container">
   <h1>Sign in</h1>

@@ -1,11 +1,12 @@
-
 <script lang="ts">
-  import "./Select.css";
   import { Select, type WithoutChildren } from "bits-ui";
   import type { Component } from "svelte";
-  import TablerSelector from '~icons/tabler/selector';
+  import TablerSelector from "~icons/tabler/selector";
 
-  type Props = Omit<WithoutChildren<Select.RootProps>, "type" | "onValueChange"> & {
+  type Props = Omit<
+    WithoutChildren<Select.RootProps>,
+    "type" | "onValueChange"
+  > & {
     placeholder?: string;
     Trigger?: Component;
     items: { value: string; label: string; disabled?: boolean }[];
@@ -25,16 +26,17 @@
   }: Props = $props();
 
   const selectedLabel = $derived(
-    items.find((item) => item.value === value)?.label
+    items.find((item) => item.value === value)?.label,
   );
 
-  const triggerClass = $derived(
-    Trigger ? "rounded" : ""
-  );
+  const triggerClass = $derived(Trigger ? "rounded" : "");
 </script>
 
 <Select.Root bind:value={value as never} {type} {...restProps}>
-  <Select.Trigger class={triggerClass} title={selectedLabel ? selectedLabel : placeholder}>
+  <Select.Trigger
+    class={triggerClass}
+    title={selectedLabel ? selectedLabel : placeholder}
+  >
     {#if Trigger}
       <Trigger />
     {:else}
@@ -57,3 +59,27 @@
   </Select.Portal>
 </Select.Root>
 
+<style>
+  [data-select-content] {
+    background-color: var(--color-primary-180);
+    border-radius: 0.3em;
+    margin-block-start: 0.3em;
+    border: 0.1em solid var(--color-primary-120);
+  }
+
+  [data-select-item] {
+    display: flex;
+    padding: 0.25em 0.61em;
+    cursor: pointer;
+
+    &[data-selected] {
+      background-color: var(--color-primary-160);
+    }
+
+    &:hover,
+    &[data-highlighted] {
+      background-color: var(--color-primary-140);
+      color: var(--color-white);
+    }
+  }
+</style>
