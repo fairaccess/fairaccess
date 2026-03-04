@@ -12,6 +12,6 @@
   "peerDependencies": {},
   "dependencies": {
     "@fairaccess/db": "workspace:*",
-    "better-auth": "^1.4.20"
+    "better-auth": "^1.5.3"
   }
 }
