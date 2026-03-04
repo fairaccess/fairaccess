@@ -4,7 +4,7 @@ import {
   type BetterAuthPlugin,
   betterAuth,
 } from "better-auth";
-import { getMigrations } from "better-auth/db";
+import { getMigrations } from "better-auth/db/migration";
 
 export type AuthConfig = {
   databaseUrl?: string;
