@@ -23,11 +23,17 @@ type LocalizedSuffix<T extends string> = T extends "/[[locale=locale]]"
     ? Suffix
     : never;
 
-// Route groups like (authenticated) are organizational only and never appear
+// Route groups like (auth) are organizational only and never appear
 // in URLs. SvelteKit prevents collisions between grouped and ungrouped routes,
-// so stripping them produces a unique, user-friendly path.
+// so stripping them produces a unique, user-friendly path. Paths whose suffix
+// is only a group (e.g. `/(auth)`) are layout-only routes with no URL and are
+// excluded via `never`.
 type StripGroups<T extends string> =
-  T extends `${infer A}(${string})/${infer B}` ? StripGroups<`${A}${B}`> : T;
+  T extends `${infer A}(${string})/${infer B}`
+    ? StripGroups<`${A}${B}`>
+    : T extends `${string}(${string})${string}`
+      ? never
+      : T;
 
 export type LocalizedPath =
   | "/"
