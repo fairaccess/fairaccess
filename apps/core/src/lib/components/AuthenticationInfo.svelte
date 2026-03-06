@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { DropdownMenu } from "@fairaccess/theme";
   import { page } from "$app/state";
   import { resolveWithCurrentLocale } from "$lib/routes-client";
   import UserIcon from "~icons/tabler/user";
@@ -8,11 +9,24 @@
 </script>
 
 {#if session}
-  <form method="POST" action="{resolveWithCurrentLocale('/log-out')}?/signOut">
-    <button type="submit" class="rounded">
+  <DropdownMenu triggerText={userName}>
+    {#snippet trigger()}
       <UserIcon />{userName}
-    </button>
-  </form>
+    {/snippet}
+    <DropdownMenu.Group aria-label={userName}>
+      <DropdownMenu.Item>
+        <a href={resolveWithCurrentLocale("/dashboard")}>Dashboard</a>
+      </DropdownMenu.Item>
+      <DropdownMenu.Item>
+        <form
+          method="POST"
+          action="{resolveWithCurrentLocale('/log-out')}?/signOut"
+        >
+          <button type="submit">Log out</button>
+        </form>
+      </DropdownMenu.Item>
+    </DropdownMenu.Group>
+  </DropdownMenu>
 {:else}
   <a href={resolveWithCurrentLocale("/log-in")} role="button" class="rounded">
     <UserIcon /><span>Log in</span>
