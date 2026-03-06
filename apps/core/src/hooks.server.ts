@@ -43,10 +43,7 @@ export const handle: Handle = async ({ event, resolve }) => {
   event.locals.session = session;
 
   if (pathWithoutLocale === "/log-in" && session) {
-    throw redirect(
-      303,
-      resolveWithLocale("/(authenticated)/dashboard", { locale }),
-    );
+    throw redirect(303, resolveWithLocale("/dashboard", { locale }));
   }
 
   // Wrap resolve to add html_attributes with the correct lang

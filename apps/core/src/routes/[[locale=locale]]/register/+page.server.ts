@@ -4,10 +4,7 @@ import { auth } from "$lib/server/auth";
 
 export const load = async ({ locals, params }) => {
   if (locals.session) {
-    throw redirect(
-      303,
-      resolveWithLocale("/(authenticated)/dashboard", params),
-    );
+    throw redirect(303, resolveWithLocale("/dashboard", params));
   }
 
   return {};
@@ -40,9 +37,6 @@ export const actions: Actions = {
       });
     }
 
-    throw redirect(
-      303,
-      resolveWithLocale("/(authenticated)/dashboard", params),
-    );
+    throw redirect(303, resolveWithLocale("/dashboard", params));
   },
 };

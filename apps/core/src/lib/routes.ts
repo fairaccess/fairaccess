@@ -23,23 +23,26 @@ type LocalizedSuffix<T extends string> = T extends "/[[locale=locale]]"
     ? Suffix
     : never;
 
+// Route groups like (authenticated) are organizational only and never appear
+// in URLs. SvelteKit prevents collisions between grouped and ungrouped routes,
+// so stripping them produces a unique, user-friendly path.
+type StripGroups<T extends string> =
+  T extends `${infer A}(${string})/${infer B}` ? StripGroups<`${A}${B}`> : T;
+
 export type LocalizedPath =
   | "/"
-  | Exclude<LocalizedSuffix<LocalizedRouteId>, "">;
-
-type LocalizedRouteParams = RouteParams<LocalizedRouteId>;
+  | Exclude<StripGroups<LocalizedSuffix<LocalizedRouteId>>, "">;
 
 export function resolveWithLocale(
   path: LocalizedPath,
   params?: LocaleParams,
 ): string {
   const locale = params?.locale;
-  const routeId: LocalizedRouteId =
-    path === "/" ? "/[[locale=locale]]" : `/[[locale=locale]]${path}`;
+  const suffix = path === "/" ? "" : path;
 
   if (!locale || locale === DEFAULT_LOCALE) {
-    return resolve(routeId, {} as LocalizedRouteParams);
+    return resolve(suffix || "/");
   }
 
-  return resolve(routeId, { locale } as LocalizedRouteParams);
+  return resolve(`/${locale}${suffix}`);
 }
