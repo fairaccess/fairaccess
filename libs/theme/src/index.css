@@ -4,7 +4,7 @@
 
 html {
   height: 100%;
-  font-size: var(--font-size-base);
+  font-size: var(--size-font-base);
 }
 
 body {
@@ -31,11 +31,11 @@ a {
 }
 
 .page-padding {
-  padding-inline: var(--width-page-padding);
+  padding-inline: var(--size-page-padding);
 }
 
 .page-margin {
-  margin-inline: var(--width-page-padding);
+  margin-inline: var(--size-page-padding);
 }
 
 button,
@@ -70,4 +70,17 @@ button,
 *:focus-visible {
   outline: 3px solid var(--color-primary-160);
   outline-offset: 3px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+
+  input {
+    display: block;
+    margin-block: 0.25em;
+    width: 100%;
+    box-sizing: border-box;
+  }
 }

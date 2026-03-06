@@ -6,4 +6,6 @@
   const userName = $derived(page.data.session?.user?.name ?? "");
 </script>
 
-<a href={resolveWithCurrentLocale("/login")} role="button" class="rounded"><UserIcon />{userName}</a>
+<a href={resolveWithCurrentLocale("/log-in")} role="button" class="rounded">
+  <UserIcon />{userName}
+</a>

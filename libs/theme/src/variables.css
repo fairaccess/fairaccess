@@ -1,9 +1,13 @@
 :root {
   --color-primary: #0d2a42;
   --color-secondary: #469bac;
+  --color-red: #f0185c;
+  --color-orange: #fc8a08;
+  --color-green: #6bd731;
 
-  --font-size-base: 16px;
-  --width-page-padding: calc((100% - 1440px) / 2);
+  --size-border-radius: 0.3em;
+  --size-font-base: 16px;
+  --size-page-padding: calc((100% - 1440px) / 2);
 
   /* Derived colors */
 
@@ -19,12 +23,12 @@
 
 @media (width < 1440px) {
   :root {
-    --width-page-padding: 1rem;
+    --size-page-padding: 1rem;
   }
 }
 
 @media (width < 1024px) {
   :root {
-    --font-size-base: 14px;
+    --size-font-base: 14px;
   }
 }

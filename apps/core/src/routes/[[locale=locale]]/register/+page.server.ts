@@ -17,28 +17,6 @@ function getField(data: FormData, key: string) {
 }
 
 export const actions: Actions = {
-  signIn: async ({ request, params }) => {
-    const data = await request.formData();
-    const email = getField(data, "email");
-    const password = getField(data, "password");
-
-    if (!email || !password) {
-      return fail(400, { error: "Email and password are required." });
-    }
-
-    try {
-      await auth.api.signInEmail({
-        body: { email, password },
-      });
-    } catch (error) {
-      return fail(400, {
-        error: error instanceof Error ? error.message : "Unable to sign in.",
-      });
-    }
-
-    throw redirect(303, resolveWithLocale("/users", params));
-  },
-
   signUp: async ({ request, params }) => {
     const data = await request.formData();
     const name = getField(data, "name");

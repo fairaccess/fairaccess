@@ -60,26 +60,28 @@
 </Select.Root>
 
 <style>
-  [data-select-content] {
-    background-color: var(--color-primary-180);
-    border-radius: 0.3em;
-    margin-block-start: 0.3em;
-    border: 0.1em solid var(--color-primary-120);
-  }
-
-  [data-select-item] {
-    display: flex;
-    padding: 0.25em 0.61em;
-    cursor: pointer;
-
-    &[data-selected] {
-      background-color: var(--color-primary-160);
+  :global {
+    [data-select-content] {
+      background-color: var(--color-primary-180);
+      border-radius: 0.3em;
+      margin-block-start: 0.3em;
+      border: 0.1em solid var(--color-primary-120);
     }
 
-    &:hover,
-    &[data-highlighted] {
-      background-color: var(--color-primary-140);
-      color: var(--color-white);
+    [data-select-item] {
+      display: flex;
+      padding: 0.25em 0.61em;
+      cursor: pointer;
+
+      &[data-selected] {
+        background-color: var(--color-primary-160);
+      }
+
+      &:hover,
+      &[data-highlighted] {
+        background-color: var(--color-primary-140);
+        color: var(--color-white);
+      }
     }
   }
 </style>
