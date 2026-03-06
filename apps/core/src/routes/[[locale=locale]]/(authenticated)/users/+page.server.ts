@@ -1,4 +1,5 @@
 import { type Actions, fail, redirect } from "@sveltejs/kit";
+import { resolveWithLocale } from "$lib/routes";
 import { auth } from "$lib/server/auth";
 import {
   createUser,
@@ -71,8 +72,11 @@ export const actions: Actions = {
     }
   },
 
-  logout: async ({ request }) => {
+  logout: async ({ request, params }) => {
     await auth.api.signOut({ headers: request.headers });
-    throw redirect(303, "../login");
+    throw redirect(
+      303,
+      resolveWithLocale("/log-in", { locale: params.locale }),
+    );
   },
 };

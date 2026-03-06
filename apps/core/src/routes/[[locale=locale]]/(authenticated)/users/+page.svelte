@@ -41,9 +41,7 @@
 <div class="container">
   <h1>User Management CRUD Demo</h1>
   <form method="POST" action="?/logout" class="logout-form">
-    <button type="submit" class="secondary">
-      Sign out
-    </button>
+    <button type="submit" class="secondary"> Sign out </button>
   </form>
 
   <div class="form-section">
@@ -93,9 +91,7 @@
           {editingId ? "Update User" : "Add User"}
         </button>
         {#if editingId}
-          <button type="button" onclick={cancelEdit}>
-            Cancel
-          </button>
+          <button type="button" onclick={cancelEdit}> Cancel </button>
         {/if}
       </div>
     </form>
@@ -112,23 +108,30 @@
             <div class="user-info">
               <h3>{user.name}</h3>
               <p>{user.email}</p>
-              <small>{user.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'N/A'}</small>
+              <small
+                >{user.createdAt
+                  ? new Date(user.createdAt).toLocaleDateString()
+                  : "N/A"}</small
+              >
             </div>
             <div class="user-actions">
               <button type="button" onclick={() => startEdit(user)}>
                 Edit
               </button>
-              <form method="POST" action="?/delete" use:enhance={() => {
-                return async ({ result }) => {
-                  if (result.type === "success") {
-                    await invalidateAll();
-                  }
-                };
-              }} style="display: inline;">
+              <form
+                method="POST"
+                action="?/delete"
+                use:enhance={() => {
+                  return async ({ result }) => {
+                    if (result.type === "success") {
+                      await invalidateAll();
+                    }
+                  };
+                }}
+                style="display: inline;"
+              >
                 <input type="hidden" name="id" value={user.id} />
-                <button type="submit" class="delete-btn">
-                  Delete
-                </button>
+                <button type="submit" class="delete-btn"> Delete </button>
               </form>
             </div>
           </div>

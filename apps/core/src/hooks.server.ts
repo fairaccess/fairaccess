@@ -42,12 +42,11 @@ export const handle: Handle = async ({ event, resolve }) => {
   });
   event.locals.session = session;
 
-  if (pathWithoutLocale.startsWith("/users") && !session) {
-    throw redirect(303, resolveWithLocale("/login", { locale }));
-  }
-
-  if (pathWithoutLocale === "/login" && session) {
-    throw redirect(303, resolveWithLocale("/users", { locale }));
+  if (pathWithoutLocale === "/log-in" && session) {
+    throw redirect(
+      303,
+      resolveWithLocale("/(authenticated)/dashboard", { locale }),
+    );
   }
 
   // Wrap resolve to add html_attributes with the correct lang
