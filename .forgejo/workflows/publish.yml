@@ -11,7 +11,8 @@ jobs:
   publish:
     name: Publish
     runs-on: srv-obin-ch_ubuntu-latest
-    if: github.event.pull_request.merged == true && github.head_ref == 'changeset-release/main'
+    if: github.event.pull_request.merged == true && github.head_ref ==
+      'changeset-release/main'
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -21,7 +22,7 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version: 1.3.10
+          bun-version: 1.3.13
 
       - name: Cache dependencies
         uses: actions/cache@v5
@@ -111,7 +112,7 @@ jobs:
   build-and-publish-images:
     name: Build and publish images
     runs-on: srv-obin-ch_ubuntu-latest
-    needs: [publish, build-base-image]
+    needs: [ publish, build-base-image ]
     strategy:
       matrix:
         package: ${{ fromJson(needs.publish.outputs.images) }}

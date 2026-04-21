@@ -3,7 +3,7 @@ ARG BUILDER_FROM_PLATFORM=linux/arm64
 
 FROM --platform=$BUILDER_FROM_PLATFORM ${BASE_IMAGE} AS builder
 
-FROM oven/bun:1.3.10 AS base
+FROM oven/bun:1.3.13 AS base
 WORKDIR /usr/src/app
 
 FROM base AS release
