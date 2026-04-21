@@ -34,6 +34,6 @@
     "unplugin-icons": "^23.0.1"
   },
   "peerDependencies": {
-    "typescript": "^5"
+    "typescript": "^6"
   }
 }
