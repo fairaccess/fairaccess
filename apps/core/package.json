@@ -29,7 +29,6 @@
     "@sveltejs/kit": "^2.57.1",
     "@sveltejs/vite-plugin-svelte": "^7.0.0",
     "svelte": "^5.55.4",
-    "svelte-adapter-bun": "^1.0.1",
     "svelte-check": "^4.4.6",
     "typescript": "^6.0.3",
     "unplugin-icons": "^23.0.1",
