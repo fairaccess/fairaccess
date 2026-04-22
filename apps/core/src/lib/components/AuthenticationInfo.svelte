@@ -1,6 +1,7 @@
 <script lang="ts">
   import { DropdownMenu } from "@fairaccess/theme";
   import { page } from "$app/state";
+  import ActiveLink from "$lib/components/ActiveLink.svelte";
   import { resolveWithCurrentLocale } from "$lib/routes-client";
   import UserIcon from "~icons/tabler/user";
 
@@ -15,7 +16,9 @@
     {/snippet}
     <DropdownMenu.Group aria-label={userName}>
       <DropdownMenu.Item>
-        <a href={resolveWithCurrentLocale("/dashboard")}>Dashboard</a>
+        <ActiveLink href={resolveWithCurrentLocale("/dashboard")}>
+          Dashboard
+        </ActiveLink>
       </DropdownMenu.Item>
       <DropdownMenu.Item>
         <form
