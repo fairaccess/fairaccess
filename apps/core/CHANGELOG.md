@@ -1,5 +1,13 @@
 # @fairaccess/core
 
+## 0.0.60
+
+### Patch Changes
+
+- 43ceec1: Display current user
+- f974dc8: Add input
+- b5b3c51: Improve language switchting
+
 ## 0.0.59
 
 ### Patch Changes

@@ -19,7 +19,7 @@
     },
     "apps/core": {
       "name": "@fairaccess/core",
-      "version": "0.0.59",
+      "version": "0.0.60",
       "dependencies": {
         "@fairaccess/auth": "workspace:*",
         "drizzle-orm": "^0.45.2",
@@ -62,7 +62,7 @@
     },
     "libs/i18n": {
       "name": "@fairaccess/i18n",
-      "version": "0.0.31",
+      "version": "0.0.32",
       "dependencies": {
         "@nanostores/i18n": "^1.3.2",
         "nanostores": "^1.3.0",
