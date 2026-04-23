@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { i18n } from "@fairaccess/i18n";
+  import { defineMessages } from "@fairaccess/i18n";
 
   let props: { version: string } = $props();
 
-  const messages = i18n("footer", {
+  const messages = defineMessages("footer", {
     version: "Version",
   });
 </script>

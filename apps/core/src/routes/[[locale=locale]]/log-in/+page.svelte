@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { i18n } from "@fairaccess/i18n";
+  import { defineMessages } from "@fairaccess/i18n";
   import { Alert, Input, NarrowContainer } from "@fairaccess/theme";
   import { resolveWithCurrentLocale } from "$lib/routes-client";
 
-  const messages = i18n("log-in", {
+  const messages = defineMessages("log-in", {
     title: "Log in",
     localProviderTitle: "Using a local account",
     externalProviderTitle: "Using an external identity provider",

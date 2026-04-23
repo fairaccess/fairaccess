@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { i18n } from "@fairaccess/i18n";
+  import { defineMessages } from "@fairaccess/i18n";
   import { Accordion, Select } from "@fairaccess/theme";
   import TablerAirBalloon from '~icons/tabler/air-balloon';
 
-  const messages = i18n("home", {
+  const messages = defineMessages("home", {
     title: "Welcome to SvelteKit",
   });
 

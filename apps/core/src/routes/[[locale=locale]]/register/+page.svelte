@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { i18n } from "@fairaccess/i18n";
+  import { defineMessages } from "@fairaccess/i18n";
   import { Alert, Input, NarrowContainer } from "@fairaccess/theme";
 
-  const messages = i18n("register", {
+  const messages = defineMessages("register", {
     title: "Register",
     description: "Create a new account",
     registerFailedTitle: "Registration failed",

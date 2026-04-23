@@ -1,13 +1,16 @@
 <script lang="ts">
-  import { DEFAULT_LOCALE, type Locale, SUPPORTED_LOCALES } from "@fairaccess/i18n";
+  import {
+    DEFAULT_LOCALE,
+    type Locale,
+    SUPPORTED_LOCALES,
+  } from "@fairaccess/i18n";
   import { Select } from "@fairaccess/theme";
   import { goto } from "$app/navigation";
   import { page } from "$app/state";
+  import { getLocaleFromPathname, stripLocalePrefix } from "$lib/locale";
   import LanguageIcon from '~icons/tabler/language';
 
-  const currentLocale = $derived(
-    ((page.params as Record<string, string>).locale as Locale) || DEFAULT_LOCALE
-  );
+  const selectedLocale = $derived(getLocaleFromPathname(page.url.pathname));
 
   const localeItems = SUPPORTED_LOCALES.map((locale) => ({
     value: locale,
@@ -19,24 +22,30 @@
   }));
 
   function getLocalePath(locale: Locale): string {
-    const pathname = page.url.pathname;
-    const localeParam = (page.params as Record<string, string>).locale;
-    const currentLocalePrefix = localeParam ? `/${localeParam}` : "";
-    const pathWithoutLocale = currentLocalePrefix
-      ? pathname.replace(currentLocalePrefix, "")
-      : pathname;
+    const pathWithoutLocale = stripLocalePrefix(page.url.pathname);
 
     // For default locale, no prefix
     if (locale === DEFAULT_LOCALE) {
-      return pathWithoutLocale || "/";
+      return pathWithoutLocale;
     }
 
     // For other locales, add prefix
-    return `/${locale}${pathWithoutLocale || ""}`;
+    return `/${locale}${pathWithoutLocale === "/" ? "" : pathWithoutLocale}`;
   }
 
   function handleLocaleChange(locale: string) {
-    goto(getLocalePath(locale as Locale));
+    const nextLocale = locale as Locale;
+    const nextPath = getLocalePath(nextLocale);
+
+    if (page.url.pathname === nextPath) {
+      return;
+    }
+
+    goto(nextPath, {
+      invalidateAll: true,
+      keepFocus: true,
+      noScroll: true,
+    });
   }
 </script>
 
@@ -44,7 +53,7 @@
   <Select
     Trigger={LanguageIcon}
     items={localeItems}
-    value={currentLocale}
+    value={selectedLocale}
     onValueChange={handleLocaleChange}
     placeholder="Select language"
   />

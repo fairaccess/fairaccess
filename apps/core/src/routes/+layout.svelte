@@ -1,14 +1,18 @@
 <script lang="ts">
   import "@fairaccess/theme/index.css";
   import "./+layout.css";
-  import { DEFAULT_LOCALE, i18n, SUPPORTED_LOCALES } from "@fairaccess/i18n";
+  import {
+    DEFAULT_LOCALE,
+    defineMessages,
+    SUPPORTED_LOCALES,
+  } from "@fairaccess/i18n";
   import Footer from "$lib/layout/Footer.svelte";
   import Header from "$lib/layout/Header.svelte";
   import Main from "$lib/layout/Main.svelte";
 
   const { children, data } = $props();
 
-  const messages = i18n("layout", {
+  const messages = defineMessages("layout", {
     title: "FairAccess",
     pageTitle: "FairAccess - Your device. Your choice. Your terms.",
     description: "Our mission is to making Swiss services open and available under your rules and through the channels you choose, while protecting your security and privacy.",
