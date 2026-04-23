@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { page } from "$app/state";
-  import { getLocaleFromPathname } from "$lib/locale";
   import { currentLocale } from "@fairaccess/i18n";
   import { untrack } from "svelte";
+  import { page } from "$app/state";
+  import { getLocaleFromPathname } from "$lib/locale";
 
   let { children, data } = $props();
 

@@ -9,7 +9,7 @@ test("keeps selected locale when navigating back to home via logo", async ({
 
   // Change locale to French while not on home
   const languageSwitcher = page.locator(
-    'nav[aria-label="Language selection"] [data-select-trigger]'
+    'nav[aria-label="Language selection"] [data-select-trigger]',
   );
   await languageSwitcher.click();
   await languageSwitcher.press("Home");
