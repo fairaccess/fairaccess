@@ -12,9 +12,26 @@
     loginFailedTitle: "Log in failed",
     registerButtonLabel: "Register",
     logInButtonLabel: "Log in",
+    continueWithGoogleLabel: "Continue with Google",
   });
 
-  let { form } = $props();
+  let { form, data } = $props();
+
+  async function signInWithGoogle() {
+    const res = await fetch("/api/auth/sign-in/social", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        provider: "google",
+        callbackURL: resolveWithCurrentLocale("/dashboard"),
+        errorCallbackURL: resolveWithCurrentLocale("/log-in"),
+      }),
+    });
+    const json = await res.json();
+    if (json.url) {
+      window.location.href = json.url;
+    }
+  }
 </script>
 
 <NarrowContainer>
@@ -48,6 +65,11 @@
 
   <section>
     <h2>{$messages.externalProviderTitle}</h2>
+    {#if data.googleEnabled}
+      <button type="button" onclick={signInWithGoogle}>
+        {$messages.continueWithGoogleLabel}
+      </button>
+    {/if}
   </section>
 
   <section>

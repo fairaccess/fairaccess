@@ -15,15 +15,18 @@
   const messages = defineMessages("layout", {
     title: "FairAccess",
     pageTitle: "FairAccess - Your device. Your choice. Your terms.",
-    description: "Our mission is to making Swiss services open and available under your rules and through the channels you choose, while protecting your security and privacy.",
-    keywords: "swiss, services, open, available, rules, channels, security, privacy",
+    description:
+      "Our mission is to making Swiss services open and available under your rules and through the channels you choose, while protecting your security and privacy.",
+    keywords:
+      "swiss, services, open, available, rules, channels, security, privacy",
     author: "Robin Bühler",
   });
 
   function getHrefLang(locale: string, path: string): string {
     // Remove locale prefix from current path if it exists
     const localePattern = SUPPORTED_LOCALES.join("|");
-    const pathWithoutLocale = path.replace(new RegExp(`^/(${localePattern})`), "") || "/";
+    const pathWithoutLocale =
+      path.replace(new RegExp(`^/(${localePattern})`), "") || "/";
 
     // For default locale, don't add prefix
     if (locale === DEFAULT_LOCALE) {
@@ -46,15 +49,23 @@
   <meta name="keywords" content={$messages.keywords} />
   <meta name="author" content={$messages.author} />
   {#each SUPPORTED_LOCALES as locale (locale)}
-    <link rel="alternate" hreflang={locale} href={`https://fairaccess.ch${getHrefLang(locale, data.path)}`} />
+    <link
+      rel="alternate"
+      hreflang={locale}
+      href={`https://fairaccess.ch${getHrefLang(locale, data.path)}`}
+    />
   {/each}
-  <link rel="alternate" hreflang="x-default" href="https://fairaccess.ch{data.path}" />
+  <link
+    rel="alternate"
+    hreflang="x-default"
+    href="https://fairaccess.ch{data.path}"
+  />
 </svelte:head>
 
 <Header />
 
 <Main>
-  {@render children()}
+  {@render children?.()}
 </Main>
 
 <Footer version={data.version} />

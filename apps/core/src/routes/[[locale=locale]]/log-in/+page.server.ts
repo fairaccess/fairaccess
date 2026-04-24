@@ -1,4 +1,5 @@
 import { type Actions, fail, redirect } from "@sveltejs/kit";
+import { env } from "$env/dynamic/private";
 import { resolveWithLocale } from "$lib/routes";
 import { auth } from "$lib/server/auth";
 
@@ -7,7 +8,10 @@ export const load = async ({ locals, params }) => {
     throw redirect(303, resolveWithLocale("/dashboard", params));
   }
 
-  return {};
+  return {
+    googleEnabled:
+      Boolean(env.GOOGLE_CLIENT_ID) && Boolean(env.GOOGLE_CLIENT_SECRET),
+  };
 };
 
 function getField(data: FormData, key: string) {

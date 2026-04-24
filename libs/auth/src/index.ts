@@ -10,6 +10,7 @@ export type AuthConfig = {
   databaseUrl?: string;
   baseURL?: string;
   secret?: string;
+  socialProviders?: BetterAuthOptions["socialProviders"];
   plugins?: BetterAuthPlugin[];
 };
 
@@ -23,6 +24,7 @@ function buildAuthOptions(config: AuthConfig) {
     emailAndPassword: {
       enabled: true,
     },
+    socialProviders: config.socialProviders,
     plugins: config.plugins ?? [],
   };
 

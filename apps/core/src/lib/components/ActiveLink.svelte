@@ -50,5 +50,5 @@
 </script>
 
 <a {href} aria-current={resolvedAriaCurrent} {...restProps}>
-  {@render children()}
+  {@render children?.()}
 </a>

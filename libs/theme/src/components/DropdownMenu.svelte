@@ -29,7 +29,7 @@
   </DropdownMenu.Trigger>
   <DropdownMenu.Portal>
     <DropdownMenu.Content class="fa-dropdown-content" {...contentProps}>
-      {@render children()}
+      {@render children?.()}
     </DropdownMenu.Content>
   </DropdownMenu.Portal>
 </DropdownMenu.Root>
