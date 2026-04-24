@@ -26,6 +26,15 @@ function buildAuthOptions(config: AuthConfig) {
     },
     socialProviders: config.socialProviders,
     plugins: config.plugins ?? [],
+    user: {
+      deleteUser: {
+        enabled: true,
+      },
+      changeEmail: {
+        enabled: true,
+        updateEmailWithoutVerification: true,
+      },
+    },
   };
 
   return { options, sqlite };

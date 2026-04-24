@@ -21,6 +21,11 @@
         </ActiveLink>
       </DropdownMenu.Item>
       <DropdownMenu.Item>
+        <ActiveLink href={resolveWithCurrentLocale("/profile")}>
+          Profile
+        </ActiveLink>
+      </DropdownMenu.Item>
+      <DropdownMenu.Item>
         <form
           method="POST"
           action="{resolveWithCurrentLocale('/log-out')}?/signOut"
