@@ -1,4 +1,4 @@
-import { createI18n, formatter } from "@nanostores/i18n";
+import { createI18n, formatter, type Messages } from "@nanostores/i18n";
 import { atom } from "nanostores";
 import deCH from "../../../assets/translations/de-CH.json";
 import enUS from "../../../assets/translations/en-US.json";
@@ -41,11 +41,11 @@ const messageStores = new Map<string, ReturnType<typeof i18n>>();
 export function defineMessages<T extends Parameters<typeof i18n>[1]>(
   componentName: string,
   base: T,
-) {
+): Messages<T> {
   const cached = messageStores.get(componentName);
 
   if (cached) {
-    return cached;
+    return cached as Messages<T>;
   }
 
   const store = i18n(componentName, base);
