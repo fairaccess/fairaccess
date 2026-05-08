@@ -31,17 +31,17 @@
     "svelte": "^5.0.0"
   },
   "devDependencies": {
-    "@sveltejs/kit": "^2.57.1",
+    "@sveltejs/kit": "^2.59.1",
     "@sveltejs/package": "^2.5.7",
-    "@sveltejs/vite-plugin-svelte": "^7.0.0",
-    "svelte": "^5.55.4",
-    "svelte-check": "^4.4.6",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "svelte": "^5.55.5",
+    "svelte-check": "^4.4.8",
     "typescript": "6.0.3",
-    "vite": "^8.0.9"
+    "vite": "^8.0.11"
   },
   "dependencies": {
     "@fontsource-variable/fraunces": "^5.2.9",
     "@fontsource-variable/readex-pro": "^5.2.11",
-    "bits-ui": "^2.18.0"
+    "bits-ui": "^2.18.1"
   }
 }
